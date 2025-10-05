@@ -1,0 +1,1 @@
+select * from NegociosDb.dbo.Negocios;
