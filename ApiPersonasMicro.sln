@@ -9,9 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clientes.Api", "Clientes.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocios.Api", "Negocios.Api\Negocios.Api.csproj", "{7A2E381C-5D2D-4FB9-8AD6-C227A2ED8E98}"
 EndProject
+<<<<<<< Updated upstream
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeedAPI", "EmployeedAPI\EmployeedAPI.csproj", "{AABEBD82-7B36-60E3-5384-D8A9A47E0002}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Api", "Business.Api\Business.Api.csproj", "{ECD4B6C6-6231-4334-813A-8D3336F63EBF}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeedAPI", "EmployeedAPI\EmployeedAPI.csproj", "{72EA4D3C-552D-FA6C-5914-A6864B245BEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersAPI", "UsersAPI\UsersAPI.csproj", "{A688249A-7542-424D-8BB3-BD3DA39FF954}"
+>>>>>>> Stashed changes
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +37,7 @@ Global
 		{7A2E381C-5D2D-4FB9-8AD6-C227A2ED8E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A2E381C-5D2D-4FB9-8AD6-C227A2ED8E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A2E381C-5D2D-4FB9-8AD6-C227A2ED8E98}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< Updated upstream
 		{AABEBD82-7B36-60E3-5384-D8A9A47E0002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AABEBD82-7B36-60E3-5384-D8A9A47E0002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AABEBD82-7B36-60E3-5384-D8A9A47E0002}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +46,16 @@ Global
 		{ECD4B6C6-6231-4334-813A-8D3336F63EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECD4B6C6-6231-4334-813A-8D3336F63EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECD4B6C6-6231-4334-813A-8D3336F63EBF}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{72EA4D3C-552D-FA6C-5914-A6864B245BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EA4D3C-552D-FA6C-5914-A6864B245BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EA4D3C-552D-FA6C-5914-A6864B245BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EA4D3C-552D-FA6C-5914-A6864B245BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A688249A-7542-424D-8BB3-BD3DA39FF954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A688249A-7542-424D-8BB3-BD3DA39FF954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A688249A-7542-424D-8BB3-BD3DA39FF954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A688249A-7542-424D-8BB3-BD3DA39FF954}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
