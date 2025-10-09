@@ -9,8 +9,8 @@ namespace UsersAPI.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersService _svc;
-        public UsersController(IUsersService svc) => _svc = svc;
+        private readonly UsersService _svc;
+        public UsersController(UsersService svc) => _svc = svc;
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto dto)
@@ -20,20 +20,32 @@ namespace UsersAPI.Controllers
             return CreatedAtAction(nameof(GetById), new { id = data!.IdUser }, data);
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            // En esta versión simple, no hacemos fetch directo.
-            // Podrías agregar un método en el servicio o usar el contexto.
-            return NoContent();
+            var user = await _svc.GetByIdAsync(id);
+
+            if (user is null)
+                return NotFound(new { ok = false, message = "Usuario no encontrado." });
+
+            return Ok(user);
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserLoginDto dto)
+        public async Task<IActionResult> Login(UserLoginDto dto)
         {
-            var (ok, error) = await _svc.LoginAsync(dto);
-            if (!ok) return Unauthorized(new { error });
-            return Ok(new { message = "Login OK" /* aquí iría el JWT */ });
+            // Corregir: usar _svc en vez de _service y declarar tipos explícitos
+            (bool ok, string? error, int? idUser) = await _svc.LoginAsync(dto);
+
+            if (!ok)
+                return BadRequest(new { ok = false, error });
+
+            return Ok(new
+            {
+                ok = true,
+                message = "Login exitoso",
+                idUser
+            });
         }
 
         [HttpPut("{id:int}")]

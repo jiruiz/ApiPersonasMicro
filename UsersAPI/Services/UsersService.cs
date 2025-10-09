@@ -8,7 +8,7 @@ namespace UsersAPI.Services
     public interface IUsersService
     {
         Task<(bool ok, string? error, UserReadDto? data)> RegisterAsync(UserRegisterDto dto);
-        Task<(bool ok, string? error)> LoginAsync(UserLoginDto dto);
+        Task<(bool ok, string? error, int? idUser)> LoginAsync(UserLoginDto dto);
         Task<(bool ok, string? error, UserReadDto? data)> UpdateAsync(int id, UserUpdateDto dto);
         Task<(bool ok, string? error)> ChangePasswordAsync(int id, UserPasswordChangeDto dto);
     }
@@ -29,10 +29,6 @@ namespace UsersAPI.Services
                 string.IsNullOrWhiteSpace(dto.Password))
                 return (false, "Campos obligatorios faltantes.", null);
            
-            //Las contraseñas deben coincidir en el registro
-            if (dto.Password != dto.ConfirmPassword)
-                return (false, "Las contraseñas no coinciden.", null);
-
             //Standar de seguridad - 8 caracteres mínimo
             if (dto.Password.Length < 8)
                 return (false, "La contraseña debe tener al menos 8 caracteres.", null);
@@ -81,30 +77,27 @@ namespace UsersAPI.Services
         }
 
         // 🔹 2. LOGIN POR EMAIL
-        public async Task<(bool, string?)> LoginAsync(UserLoginDto dto)
+        public async Task<(bool ok, string? error, int? idUser)> LoginAsync(UserLoginDto dto)
         {
-               //Valida si el email o la password son nulos
             if (string.IsNullOrWhiteSpace(dto.Email) || string.IsNullOrWhiteSpace(dto.Password))
-                return (false, "Email y contraseña son obligatorios.");
+                return (false, "Email y contraseña son obligatorios.", null);
 
             var user = await _ctx.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Email.ToLower() == dto.Email.ToLower());
 
             if (user is null)
-                return (false, "Email o contraseña inválidos.");
+                return (false, "Email o contraseña inválidos.", null);
 
-            //BCrypt.Net.BCrypt es el encargado de hacer el c ontrol de contraseñas.
             var ok = BCrypt.Net.BCrypt.Verify(dto.Password, user.UserPassword);
             if (!ok)
-                return (false, "Email o contraseña inválidos.");
+                return (false, "Email o contraseña inválidos.", null);
 
-            //Campo Active de la BD
             if (!user.Active)
-                return (false, "El usuario está inactivo.");
+                return (false, "El usuario está inactivo.", null);
 
-            // Si llegás hasta acá, el login es exitoso
-            return (true, null);
+            // ✅ Si llegás hasta acá, el login es exitoso
+            return (true, null, user.IdUser);
         }
 
         // 🔹 3. ACTUALIZACIÓN DE DATOS DE USUARIO
@@ -122,6 +115,9 @@ namespace UsersAPI.Services
                     return (false, "El email ya está en uso.", null);
                 user.Email = email;
             }
+
+            if (!string.IsNullOrWhiteSpace(dto.UserName))
+                user.UserName = dto.UserName.Trim();
 
             if (!string.IsNullOrWhiteSpace(dto.UserLastName))
                 user.UserLastName = dto.UserLastName.Trim();
@@ -170,5 +166,30 @@ namespace UsersAPI.Services
             await _ctx.SaveChangesAsync();
             return (true, null);
         }
+
+        // 🔹 5. DEVOLUCIÓN DE DATOS DE USUARIO POR ID
+
+        public async Task<UserReadDto?> GetByIdAsync(int id)
+        {
+            var user = await _ctx.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.IdUser == id);
+
+            if (user is null)
+                return null;
+
+            return new UserReadDto
+            {
+                IdUser = user.IdUser,
+                UserName = user.UserName,
+                UserLastName = user.UserLastName,
+                Email = user.Email,
+                Active = user.Active,
+                InsertDateUtc = user.InsertDate.ToString("o"),
+                ModifyDateUtc = user.ModifyDate?.ToString("o"),
+                PasswordModifyDateUtc = user.PasswordModifyDate?.ToString("o")
+            };
+        }
+
     }
 }
