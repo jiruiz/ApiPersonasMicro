@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NegociosDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Cargo" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Sueldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NegocioId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Negocios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rubro" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CUIT" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="CondicionIVA" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="RazonSocial" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FechaInicioActividades" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="AntiguedadEnRubro" Type="int" Nullable="false" />
+          <Property Name="Calle" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Localidad" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Provincia" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Empleados_Negocios_NegocioId">
+          <End Role="Negocios" Type="Self.Negocios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Negocios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="NegocioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NegociosDbModelStoreContainer">
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Negocios" EntityType="Self.Negocios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Empleados_Negocios_NegocioId" Association="Self.FK_Empleados_Negocios_NegocioId">
+            <End Role="Negocios" EntitySet="Negocios" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NegociosDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cargo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sueldo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NegocioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Negocios" Relationship="Self.FK_Empleados_Negocios_NegocioId" FromRole="Empleados" ToRole="Negocios" />
+        </EntityType>
+        <EntityType Name="Negocios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rubro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUIT" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CondicionIVA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaInicioActividades" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="AntiguedadEnRubro" Type="Int32" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Localidad" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Provincia" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_Empleados_Negocios_NegocioId" FromRole="Negocios" ToRole="Empleados" />
+        </EntityType>
+        <Association Name="FK_Empleados_Negocios_NegocioId">
+          <End Role="Negocios" Type="Self.Negocios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Negocios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="NegocioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NegociosDbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+          <EntitySet Name="Negocios" EntityType="Self.Negocios" />
+          <AssociationSet Name="FK_Empleados_Negocios_NegocioId" Association="Self.FK_Empleados_Negocios_NegocioId">
+            <End Role="Negocios" EntitySet="Negocios" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NegociosDbModelStoreContainer" CdmEntityContainer="NegociosDbEntities1">
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="NegociosDbModel.Empleados">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Sueldo" ColumnName="Sueldo" />
+                <ScalarProperty Name="NegocioId" ColumnName="NegocioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Negocios">
+            <EntityTypeMapping TypeName="NegociosDbModel.Negocios">
+              <MappingFragment StoreEntitySet="Negocios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="CondicionIVA" ColumnName="CondicionIVA" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="FechaInicioActividades" ColumnName="FechaInicioActividades" />
+                <ScalarProperty Name="AntiguedadEnRubro" ColumnName="AntiguedadEnRubro" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

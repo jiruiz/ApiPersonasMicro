@@ -31,8 +31,8 @@ namespace ManageBusinessFront
             {
                 await LoadBusinessAsync();
             }
-        }
 
+        }
         protected async Task LoadBusinessAsync()
         {
             using (var client = new HttpClient())
