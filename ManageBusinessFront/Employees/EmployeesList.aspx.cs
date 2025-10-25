@@ -64,32 +64,30 @@ namespace ManageBusinessFront.Employees
             gvEmployees.DataBind();
         }
 
-        protected void gvEmployees_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected async void gvEmployees_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
             {
-                int id = Convert.ToInt32(e.CommandArgument);
-                // redirige a la pantalla para editar empleado
-                Response.Redirect($"EditEmployee.aspx?id={id}");
+                int idEmployee = Convert.ToInt32(e.CommandArgument);
+
+                // Redirigir a la página de edición con ambos IDs
+                Response.Redirect($"~/Employees/EditEmployee.aspx?idEmployee={idEmployee}&idBusiness={idBusiness}");
             }
 
             if (e.CommandName == "DeleteRow")
             {
                 int id = Convert.ToInt32(e.CommandArgument);
-                _ = DeleteEmployeeAsync(id);
+                await DeleteEmployeeAsync(id);
+                Response.Redirect(Request.RawUrl, false);
             }
         }
+
 
         private async Task DeleteEmployeeAsync(int id)
         {
             using (var client = new HttpClient())
             {
                 var res = await client.DeleteAsync($"https://localhost:7199/api/Employee/{id}");
-                if (res.IsSuccessStatusCode)
-                {
-                    // rtecarga la lista
-                    await LoadEmployeesAsync(idBusiness);
-                }
             }
         }
 

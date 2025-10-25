@@ -62,6 +62,38 @@ namespace EmployeedAPI.Controllers
             return Ok(employee); // retorna el empleado creado
         }
 
+        [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateEmployee(int id, [FromBody] EmployeeCreateDto employeeDto)
+        {
+            if (employeeDto == null) {
+                return BadRequest("Invalid employee data");
+            }
+            var success = _employeeRepository.EditEmployee(employeeDto, id);
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return NoContent();// respuesta de okey
+
+        }
+
+        [HttpDelete("{idEmployee}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteEmployee(int idEmployee) { 
+        
+            if (idEmployee > 0)
+            {
+                _employeeRepository.DeleteEmployee(idEmployee);
+                return NoContent(); //respuesta ok
+            }
+            else
+                return BadRequest("Invalid employee data");
+
+        }
 
     }
 }

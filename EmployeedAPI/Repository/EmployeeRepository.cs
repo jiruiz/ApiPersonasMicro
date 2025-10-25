@@ -75,5 +75,37 @@ namespace EmployeedAPI.Repository
         
             return _context.Employees.Where(p=>p.Id == id).FirstOrDefault();
         }
+
+        public bool EditEmployee(EmployeeCreateDto employeeDto,int idEmployee)
+        {
+            var existingEmployee = _context.Employees.FirstOrDefault(e => e.Id == idEmployee);
+            if (existingEmployee == null) { 
+                return false;
+            }
+
+            existingEmployee.FirstName = employeeDto.FirstName;
+            existingEmployee.LastName = employeeDto.LastName;
+            existingEmployee.Email = employeeDto.Email;
+            existingEmployee.Phone = employeeDto.Phone;
+            existingEmployee.Departament = employeeDto.Departament;
+            existingEmployee.Range = employeeDto.Range;
+            existingEmployee.State = employeeDto.State;
+            existingEmployee.HireDate = employeeDto.HireDate;
+            existingEmployee.BirthdayDate = employeeDto.BirthdayDate;
+
+            return Save();
+        }
+
+        public bool DeleteEmployee(int idEmployee) { 
+        
+            var existEmployee = _context.Employees.FirstOrDefault(e => e.Id == idEmployee);
+            if (existEmployee == null) {
+                return false;
+            }
+
+            _context.Employees.Remove(existEmployee);
+            return Save();
+        
+        }
     }
 }

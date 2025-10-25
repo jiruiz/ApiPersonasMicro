@@ -84,6 +84,7 @@
     <Content Include="Business\BusinessAdd.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employees\CreateEmployee.aspx" />
+    <Content Include="Employees\EditEmployee.aspx" />
     <Content Include="Employees\EmployeesList.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Model1.Context.tt">
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="Employees\CreateEmployee.aspx.designer.cs">
       <DependentUpon>CreateEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\EditEmployee.aspx.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employees\EditEmployee.aspx.designer.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employees\EmployeesList.aspx.cs">
       <DependentUpon>EmployeesList.aspx</DependentUpon>
