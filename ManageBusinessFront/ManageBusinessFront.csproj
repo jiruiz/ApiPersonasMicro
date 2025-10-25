@@ -80,9 +80,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BusinessList.aspx" />
-    <Content Include="BusinessAdd.aspx" />
-    <Content Include="EmployeesList.aspx" />
+    <Content Include="Business\BusinessList.aspx" />
+    <Content Include="Business\BusinessAdd.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Employees\CreateEmployee.aspx" />
+    <Content Include="Employees\EmployeesList.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -97,28 +99,42 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessList.aspx.cs">
+    <Compile Include="Business\BusinessList.aspx.cs">
       <DependentUpon>BusinessList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BusinessList.aspx.designer.cs">
+    <Compile Include="Business\BusinessList.aspx.designer.cs">
       <DependentUpon>BusinessList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BusinessAdd.aspx.cs">
+    <Compile Include="Business\BusinessAdd.aspx.cs">
       <DependentUpon>BusinessAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BusinessAdd.aspx.designer.cs">
+    <Compile Include="Business\BusinessAdd.aspx.designer.cs">
       <DependentUpon>BusinessAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleados.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmployeesList.aspx.cs">
+    <Compile Include="Employees\CreateEmployee.aspx.cs">
+      <DependentUpon>CreateEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employees\CreateEmployee.aspx.designer.cs">
+      <DependentUpon>CreateEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\EmployeesList.aspx.cs">
       <DependentUpon>EmployeesList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EmployeesList.aspx.designer.cs">
+    <Compile Include="Employees\EmployeesList.aspx.designer.cs">
       <DependentUpon>EmployeesList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">

@@ -16,10 +16,31 @@
         
         <!-- 🔝 NAVBAR -->
         <nav class="bg-blue-600 text-white px-6 py-3 flex justify-between items-center shadow-md">
-            <h1 class="text-xl font-semibold">📊 Gestión de Negocios</h1>
+            <!-- redirige al panel principal -->
+            <asp:HyperLink 
+                ID="lnkHome" 
+                runat="server" 
+                NavigateUrl="~/Default.aspx"
+                CssClass="text-xl font-semibold hover:underline hover:text-gray-200">
+                📊 Gestión de Negocios
+            </asp:HyperLink>
+            <!--ir al listado de empleados-->
             <div class="space-x-6">
-                <a href="EmployeesList.aspx" class="hover:underline hover:text-gray-200">👨‍💼 Empleados</a>
-                <a href="BusinessList.aspx" class="hover:underline hover:text-gray-200">🏢 Negocios</a>
+                <asp:HyperLink 
+                    ID="lnkEmployees" 
+                    runat="server" 
+                    NavigateUrl="~/Employees/EmployeesList.aspx?idBusiness=1"
+                    CssClass="hover:underline hover:text-gray-200">
+                    👨‍💼 Empleados
+                 </asp:HyperLink>
+                <!--ir a negocios-->
+                <asp:HyperLink 
+                        ID="lnkBusiness" 
+                        runat="server" 
+                        NavigateUrl="~/Business/BusinessList.aspx"
+                        CssClass="hover:underline hover:text-gray-200">
+                        🏢 Negocios
+                </asp:HyperLink>
             </div>
         </nav>
 

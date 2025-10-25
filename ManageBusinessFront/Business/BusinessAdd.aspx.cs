@@ -8,7 +8,7 @@ using System.Data.Entity; // Para DbContext si hace falta
 
 
 
-namespace ManageBusinessFront
+namespace ManageBusinessFront.Business
 {
     public partial class BusinessAdd : System.Web.UI.Page
     {

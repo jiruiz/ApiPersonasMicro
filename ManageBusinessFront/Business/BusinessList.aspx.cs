@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-namespace ManageBusinessFront
+namespace ManageBusinessFront.Business
 {
     public partial class BusinessList : System.Web.UI.Page
     {
@@ -37,7 +37,8 @@ namespace ManageBusinessFront
         {
             using (var client = new HttpClient())
             {
-                var res = await client.GetAsync("https://localhost:7038/api/Business");
+                // hay que crear esta url con el get de todos los negocios para listarlos
+                var res = await client.GetAsync("http://localhost:5168/api/Business");
                 if (res.IsSuccessStatusCode)
                 {
                     var json = await res.Content.ReadAsStringAsync();

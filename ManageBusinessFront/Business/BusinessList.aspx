@@ -1,6 +1,6 @@
 ﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true"
     CodeBehind="BusinessList.aspx.cs"
-    Inherits="ManageBusinessFront.BusinessList"
+    Inherits="ManageBusinessFront.Business.BusinessList"
     MasterPageFile="~/Site1.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
