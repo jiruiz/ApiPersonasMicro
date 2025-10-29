@@ -51,6 +51,10 @@ public partial class Login : System.Web.UI.Page
             }
     }
 
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"~/Users/CreateUser.aspx");
+        }
     }
 
 

@@ -21,7 +21,7 @@
         </p>
         <p>
             <asp:Button ID="btnIniciarSesion" runat="server" Text="Iniciar Sesión" OnClick="btnIniciarSesion_Click" />
-            <asp:Button ID="btnRegistrarse" runat="server" Text="Registrarse"/>
+            <asp:Button ID="btnRegistrarse" runat="server" Text="Registrarse" OnClick="btnRegistrarse_Click"/>
         </p>
         <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
     </form>
