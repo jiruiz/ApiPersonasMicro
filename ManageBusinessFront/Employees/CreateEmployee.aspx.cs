@@ -44,7 +44,7 @@ namespace ManageBusinessFront.Employees
                 if (resp.IsSuccessStatusCode)
                 {
                     // Volver al listado
-                    Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={idBusiness}");
+                    Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={idBusiness}", false);
                     return;
                 }
 
@@ -54,7 +54,7 @@ namespace ManageBusinessFront.Employees
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={idBusiness}");
+            Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={idBusiness}", false);
         }
 
         private string ParseToIsoDate(string input)

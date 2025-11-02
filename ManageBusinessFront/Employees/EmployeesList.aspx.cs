@@ -71,7 +71,7 @@ namespace ManageBusinessFront.Employees
                 int idEmployee = Convert.ToInt32(e.CommandArgument);
 
                 // Redirigir a la página de edición con ambos IDs
-                Response.Redirect($"~/Employees/EditEmployee.aspx?idEmployee={idEmployee}&idBusiness={idBusiness}");
+                Response.Redirect($"~/Employees/EditEmployee.aspx?idEmployee={idEmployee}&idBusiness={idBusiness}", false);
             }
 
             if (e.CommandName == "DeleteRow")
@@ -93,7 +93,7 @@ namespace ManageBusinessFront.Employees
 
         protected void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"CreateEmployee.aspx?idBusiness={idBusiness}");
+            Response.Redirect($"CreateEmployee.aspx?idBusiness={idBusiness}", false);
         }
 
     }

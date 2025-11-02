@@ -40,7 +40,7 @@ namespace ManageBusinessFront.Users
                 if (resp.IsSuccessStatusCode)
                 {
                     // Volver al listado
-                    Response.Redirect($"~/Login.aspx");
+                    Response.Redirect($"~/Login.aspx", false);
                     return;
                 }
 
@@ -50,7 +50,7 @@ namespace ManageBusinessFront.Users
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"~/Login.aspx");
+            Response.Redirect($"~/Login.aspx", false);
         }
 
         private string ParseToIsoDate(string input)
