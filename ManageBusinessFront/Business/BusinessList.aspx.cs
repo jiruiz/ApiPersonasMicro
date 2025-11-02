@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Web.UI.WebControls;
 namespace ManageBusinessFront.Business
 {
     public partial class BusinessList : System.Web.UI.Page
@@ -46,6 +47,36 @@ namespace ManageBusinessFront.Business
                     gvBusiness.DataSource = businesses;
                     gvBusiness.DataBind();
                 }
+            }
+        }
+
+        protected async void gvBusiness_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+
+            if (e.CommandName == "EditRow")
+            { 
+                // Redirigir a la página de edición
+                Response.Redirect($"~/Business/EditBusiness.aspx?idBusiness={id}", false);
+            }
+
+            if (e.CommandName == "DeleteRow")
+            {
+                await DeleteBusinessAsync(id);
+                Response.Redirect(Request.RawUrl, false);
+            }
+
+            if (e.CommandName == "GoToEmployees")
+            {
+                Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={id}", false);
+            }
+        }
+
+        private async Task DeleteBusinessAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                var res = await client.DeleteAsync($"https://localhost:7038/api/business/{id}");
             }
         }
 
