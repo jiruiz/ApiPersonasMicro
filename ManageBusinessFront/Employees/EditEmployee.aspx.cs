@@ -139,7 +139,7 @@ namespace ManageBusinessFront.Employees
         // 🔹 Cancelar → volver al listado
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={idBusiness}");
+            Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={idBusiness}", false);
         }
     }
 }
