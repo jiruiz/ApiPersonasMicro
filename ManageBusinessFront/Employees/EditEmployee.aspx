@@ -52,7 +52,7 @@
           <br /><br />
       <asp:Button ID="btnSave" runat="server" Text="Guardar" CssClass="btn btn-primary" 
           OnClick="btnSave_Click"/>
-      <asp:Button ID="btnCancel" runat="server" Text="Cancelar" CssClass="btn btn-secondary ms-2"
+      <asp:Button ID="btnCancel" runat="server" CausesValidation="false" Text="Cancelar" CssClass="btn btn-secondary ms-2"
             OnClick="btnCancel_Click"/>
       <br /><br />
       <asp:Label ID="lblMsg" runat="server" />
