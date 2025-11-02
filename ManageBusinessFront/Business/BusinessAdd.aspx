@@ -74,5 +74,6 @@
     <br />
     <br />
     <br />
-    <asp:Button ID="btnAddBusiness" runat="server" Text="Add" OnClick="btnAddBusiness_Click" />
+    <asp:Button ID="Button1" runat="server" Text="Add" OnClick="btnAddBusiness_Click" />
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
 </asp:Content>

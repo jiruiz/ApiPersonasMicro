@@ -24,19 +24,35 @@ namespace ManageBusinessFront.Employees
             public string State { get; set; }
         }
 
+        public class Business
+        {
+            public int Id { get; set; }
+            public string Name { get; set; } = string.Empty;
+            public string Industry { get; set; } = string.Empty;
+            public string PhoneNumber { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
+            public string TaxId { get; set; } = string.Empty;
+            public string VATStatus { get; set; } = string.Empty;
+            public string LegalName { get; set; } = string.Empty;
+            public DateTime StartOfActivities { get; set; }
+            public int YearsInIndustry { get; set; }
+            public string Street { get; set; } = string.Empty;
+            public string City { get; set; } = string.Empty;
+            public string State { get; set; } = string.Empty;
+        }
+
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int business = 1; // valor por defecto
+                int businessId = 4; // valor por defecto
                 if (Request.QueryString["idBusiness"] != null)
-                    int.TryParse(Request.QueryString["idBusiness"], out business);
+                    int.TryParse(Request.QueryString["idBusiness"], out businessId);
 
-                ViewState["idBusiness"] = business; // guardamos en ViewState, para reenviarlo correctamente
-                ViewState["BusinessName"] = "Test HardCode"; // dato a recuperar
+                ViewState["idBusiness"] = businessId; // guardamos en ViewState, para reenviarlo correctamente
 
-
-                await LoadEmployeesAsync(business);
+                await LoadEmployeesAsync(businessId);
+                await LoadBusinessData(businessId);
             }
             else
             {
@@ -96,5 +112,20 @@ namespace ManageBusinessFront.Employees
             Response.Redirect($"CreateEmployee.aspx?idBusiness={idBusiness}", false);
         }
 
+        private async Task LoadBusinessData(int businessId)
+        {
+            var client = new HttpClient();
+            var res = await client.GetAsync($"https://localhost:7038/api/Business/{businessId}");
+            if (!res.IsSuccessStatusCode)
+            {
+                // Si la API devuelve error, porque no encuentra el business
+                return;
+            }
+
+            var json = await res.Content.ReadAsStringAsync();
+
+            var business = JsonConvert.DeserializeObject<Business>(json);
+            ViewState["BusinessName"] = $"{business.Id} - {business.Name}";
+        }
     }
 }

@@ -82,5 +82,9 @@ namespace ManageBusinessFront.Business
             }
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"~/Business/BusinessList.aspx", false);
+        }
     }
 }
