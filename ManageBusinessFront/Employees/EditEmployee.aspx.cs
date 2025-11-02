@@ -39,9 +39,14 @@ namespace ManageBusinessFront.Employees
             if (!IsPostBack)
             {
                 if (int.TryParse(Request.QueryString["idBusiness"], out int businessId))
+                {
                     idBusiness = businessId;
+                }
                 else
-                    idBusiness = 1;//hardcode
+                {
+                    Response.Redirect($"~/Business/BusinessList.aspx", false);
+                    return;
+                }
 
                 if (Request.QueryString["idEmployee"] != null)
                     int.TryParse(Request.QueryString["idEmployee"], out idEmployee);
