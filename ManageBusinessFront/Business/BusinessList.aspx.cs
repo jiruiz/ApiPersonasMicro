@@ -57,7 +57,7 @@ namespace ManageBusinessFront.Business
             if (e.CommandName == "EditRow")
             { 
                 // Redirigir a la página de edición
-                Response.Redirect($"~/Business/EditBusiness.aspx?idBusiness={id}", false);
+                Response.Redirect($"~/Business/BusinessEdit.aspx?idBusiness={id}", false);
             }
 
             if (e.CommandName == "DeleteRow")
