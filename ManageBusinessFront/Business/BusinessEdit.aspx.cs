@@ -63,7 +63,7 @@ namespace ManageBusinessFront.Business
             try
             {
                 var client = new HttpClient();
-                var response = await client.GetAsync($"http://localhost:7038/api/Business/{idBusiness}");
+                var response = await client.GetAsync($"https://localhost:7038/api/Business/{idBusiness}");
                 if (!response.IsSuccessStatusCode)
                 {
                     lblMsg.Text = "Error el obtener los datos del empleado";
