@@ -11,7 +11,7 @@ namespace ManageBusinessFront.Business
 {
 
 
-    public partial class BusinessAdd
+    public partial class BusinessEdit
     {
 
         /// <summary>
@@ -249,13 +249,13 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.TextBox stateTextBox;
 
         /// <summary>
-        /// Control btnAddBusiness.
+        /// Control btnSave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddBusiness;
+        protected global::System.Web.UI.WebControls.Button btnSave;
 
         /// <summary>
         /// Control btnCancel.
@@ -265,5 +265,14 @@ namespace ManageBusinessFront.Business
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+
+        /// <summary>
+        /// Control lblMsg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMsg;
     }
 }

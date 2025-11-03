@@ -34,10 +34,10 @@
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
                         <div class="flex space-x-2">
-                            <%--<asp:Button ID="btnEdit" runat="server" Text="✏️ Editar"
+                            <asp:Button ID="btnEdit" runat="server" Text="✏️ Editar"
                                 CssClass="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
                                 CommandName="EditRow"
-                                CommandArgument='<%# Eval("Id") %>' />--%>
+                                CommandArgument='<%# Eval("Id") %>' />
 
                             <asp:Button ID="btnDelete" runat="server" Text="🗑️ Eliminar"
                                 CssClass="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"

@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="BusinessAdd.aspx.cs" Inherits="ManageBusinessFront.Business.BusinessAdd" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h4>
-        Create Business
+    <h4>Create Business
     </h4>
     <asp:Label ID="idLabel" runat="server" Text="ID:" Visible="false"></asp:Label>
-    <asp:TextBox ID="idTextBox" runat="server" Visible="false"></asp:TextBox>   
+    <asp:TextBox ID="idTextBox" runat="server" Visible="false"></asp:TextBox>
     <br />
     <br />
     <asp:Label ID="nameLabel" runat="server" Text="Name"></asp:Label>
@@ -15,7 +15,7 @@
     <br />
 
     <asp:Label ID="industryLabel" runat="server" Text="Industry:"></asp:Label>
-    <asp:TextBox ID="industryTextBox" runat="server"></asp:TextBox>    
+    <asp:TextBox ID="industryTextBox" runat="server"></asp:TextBox>
     <br />
     <br />
 
@@ -68,7 +68,7 @@
 
     <asp:Label ID="stateLabel" runat="server" Text="State:"></asp:Label>
     <asp:TextBox ID="stateTextBox" runat="server"></asp:TextBox>
-    
+
 
     <br />
     <br />

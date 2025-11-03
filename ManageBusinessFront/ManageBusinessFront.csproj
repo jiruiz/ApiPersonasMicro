@@ -82,6 +82,7 @@
   <ItemGroup>
     <Content Include="Business\BusinessList.aspx" />
     <Content Include="Business\BusinessAdd.aspx" />
+    <Content Include="Business\BusinessEdit.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Employees\CreateEmployee.aspx" />
     <Content Include="Employees\EditEmployee.aspx" />
@@ -114,6 +115,13 @@
     </Compile>
     <Compile Include="Business\BusinessAdd.aspx.designer.cs">
       <DependentUpon>BusinessAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business\BusinessEdit.aspx.cs">
+      <DependentUpon>BusinessEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\BusinessEdit.aspx.designer.cs">
+      <DependentUpon>BusinessEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
