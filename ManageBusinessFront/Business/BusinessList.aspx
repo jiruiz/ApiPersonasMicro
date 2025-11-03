@@ -6,6 +6,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>📊 Listado de Negocios</h2>
     <br />
+
+    <!-- boton dar de alta -->
+    <div class="text-center mb-6">
+        <asp:Button ID="btnAdd" runat="server" Text="➕ Dar de alta negocio"
+            CssClass="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all duration-200 hover:scale-105"
+            OnClick="btnAdd_Click" />
+    </div>
+
     <br />
     <div style="max-width: 1000px; margin: 0 auto;">
         <asp:GridView ID="gvBusiness" runat="server" AutoGenerateColumns="False"

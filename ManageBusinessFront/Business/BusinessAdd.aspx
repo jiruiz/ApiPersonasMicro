@@ -1,4 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="BusinessAdd.aspx.cs" Inherits="ManageBusinessFront.Business.BusinessAdd" %>
+﻿<%@ Page Title=""
+    Async="true"
+    Language="C#"
+    MasterPageFile="~/Site1.Master"
+    AutoEventWireup="true"
+    CodeBehind="BusinessAdd.aspx.cs"
+    Inherits="ManageBusinessFront.Business.BusinessAdd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -29,7 +35,7 @@
     <br />
     <br />
 
-    <asp:Label ID="taxIdLabel" runat="server" Text="Taax ID (CUIT):"></asp:Label>
+    <asp:Label ID="taxIdLabel" runat="server" Text="Tax ID (CUIT):"></asp:Label>
     <asp:TextBox ID="taxIdTextBox" runat="server"></asp:TextBox>
     <br />
     <br />
@@ -76,4 +82,7 @@
     <br />
     <asp:Button ID="btnAddBusiness" runat="server" Text="Add" OnClick="btnAddBusiness_Click" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+    <br />
+    <br />
+    <asp:Label ID="lblMsg" runat="server" />
 </asp:Content>
