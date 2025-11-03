@@ -2,14 +2,12 @@
 using System;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web.UI;
 
 namespace ManageBusinessFront.Users
 {
     public partial class CreateUser : System.Web.UI.Page
     {
-        private int idBusiness;
         protected void Page_Load(object sender, EventArgs e)
         {
             // Desactivar validación unobtrusive (usa el modo clásico de WebForms)

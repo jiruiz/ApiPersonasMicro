@@ -72,6 +72,11 @@ namespace ManageBusinessFront.Business
             }
         }
 
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect($"~/Business/BusinessAdd.aspx", false);
+        }
+
         private async Task DeleteBusinessAsync(int id)
         {
             using (var client = new HttpClient())
