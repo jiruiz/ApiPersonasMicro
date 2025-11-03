@@ -29,7 +29,7 @@
     <br />
     <br />
 
-    <asp:Label ID="taxIdLabel" runat="server" Text="Taax ID (CUIT):"></asp:Label>
+    <asp:Label ID="taxIdLabel" runat="server" Text="Tax ID (CUIT):"></asp:Label>
     <asp:TextBox ID="taxIdTextBox" runat="server"></asp:TextBox>
     <br />
     <br />
