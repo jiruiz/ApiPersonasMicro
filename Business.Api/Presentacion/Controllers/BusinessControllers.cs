@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Business.Api.Models;
-using Business.Api.Interfaces;
-using Business.Api.Dto;
-using Business.Api.Data;
+using Business.Api.Datos.Models;
+using Business.Api.Datos.Data;
+using Business.Api.Negocio.Dto;
+using Business.Api.Negocio.Interfaces;
 
-namespace Business.Api.Controllers
+namespace Business.Api.Presentacion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

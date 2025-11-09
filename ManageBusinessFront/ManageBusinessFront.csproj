@@ -87,6 +87,7 @@
     <Content Include="Employees\CreateEmployee.aspx" />
     <Content Include="Employees\EditEmployee.aspx" />
     <Content Include="Employees\EmployeesList.aspx" />
+    <Content Include="Home\Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -153,6 +154,13 @@
     </Compile>
     <Compile Include="Employees\EmployeesList.aspx.designer.cs">
       <DependentUpon>EmployeesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

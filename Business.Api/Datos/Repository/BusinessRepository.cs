@@ -1,11 +1,10 @@
-﻿using Business.Api.Data;
-using Business.Api.Dto;
-using Business.Api.Interfaces;
-using Business.Api.Models;
+﻿using Business.Api.Datos.Data;
+using Business.Api.Negocio.Dto;
+using Business.Api.Negocio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace Business.Api.Repository
+namespace Business.Api.Datos.Repository
 {
     public class BusinessRepository : IBusinessRepository
     {

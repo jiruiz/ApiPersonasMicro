@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Business.Api.Dto
+namespace Business.Api.Negocio.Dto
 {
     /// <summary>
     /// Data Transfer Object for Business entity.

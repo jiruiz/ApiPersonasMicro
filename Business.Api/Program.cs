@@ -1,6 +1,6 @@
-using Business.Api.Data;
-using Business.Api.Interfaces;
-using Business.Api.Repository;
+using Business.Api.Datos.Data;
+using Business.Api.Datos.Repository;
+using Business.Api.Negocio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 

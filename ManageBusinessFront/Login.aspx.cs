@@ -41,7 +41,7 @@ public partial class Login : System.Web.UI.Page
                     Session["IdUsuario"] = idUsuario;
 
                     // Paso 3: redirigir a la página privada
-                    Response.Redirect("~/Business/BusinessList.aspx", false);
+                    Response.Redirect("~/Home/Home.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
                 else

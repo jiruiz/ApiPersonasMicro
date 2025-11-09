@@ -1,7 +1,6 @@
-﻿using Business.Api.Dto;
-using Business.Api.Models;
+﻿using Business.Api.Negocio.Dto;
 
-namespace Business.Api.Interfaces
+namespace Business.Api.Negocio.Interfaces
 {
     public interface IBusinessRepository
     {
@@ -9,7 +8,7 @@ namespace Business.Api.Interfaces
         ICollection<BusinessDto> GetBusinesses();
 
         // ✅ Obtener un negocio por ID
-        Models.Business GetBusinessById(int id);
+        Datos.Models.Business GetBusinessById(int id);
 
         // ✅ Obtener negocios por rubro (Industry)
         ICollection<BusinessDto> GetBusinessesByIndustry(string industry);

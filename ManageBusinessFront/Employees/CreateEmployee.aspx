@@ -4,52 +4,101 @@
     MasterPageFile="~/Site1.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-      <h2>Dar de alta al empleado: </h2>
-      <div class="mb-2">
-      <div class="mb-2">
-        <asp:Label runat="server" AssociatedControlID="txtFirst" Text="Nombre"></asp:Label><br />
-        <asp:TextBox ID="txtFirst" runat="server" CssClass="form-control" />
-        <asp:RequiredFieldValidator ID="reqFirst" runat="server"
-            ControlToValidate="txtFirst"
-            ErrorMessage="El nombre es obligatorio."
-            CssClass="text-red-600 text-sm ml-1"
-            Display="Dynamic" />
-        <asp:RegularExpressionValidator ID="valLetters" runat="server"
-            ControlToValidate="txtFirst"
-            ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]{1,25}$"
-            ErrorMessage="El nombre no puede superar los 25 caracteres y no debe tener numeros."
-            CssClass="text-red-600 text-sm ml-1"
-            Display="Dynamic" />
-      </div>
-      <div class="mb-2">
-        <asp:Label runat="server" AssociatedControlID="txtLast" Text="Apellido"></asp:Label><br />
-        <asp:TextBox ID="txtLast" runat="server" CssClass="form-control" />
-      </div>
-      <div>
-          <asp:Label runat="server" AssociatedControlID="txtEmail" Text="Email"></asp:Label><br />
-            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
-      </div>
-      <div>
-          <asp:Label runat="server" AssociatedControlID="txtPhone" Text="Telefono"></asp:Label><br />
-            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" />
-      </div>
-      <div>
-          <asp:Label runat="server" AssociatedControlID="txtBirth" Text="F.Nacimiento (dd/MM/yyyyy)"></asp:Label><br />
-            <asp:TextBox ID="txtBirth" runat="server" CssClass="form-control" />
-      </div>
-      <asp:Label runat="server" AssociatedControlID="txtDept" Text="Departamento laboral"></asp:Label><br />
-        <asp:TextBox ID="txtDept" runat="server" CssClass="form-control" />
-      </div>
-      <div>
-           <asp:Label runat="server" AssociatedControlID="txtRange" Text="Rango laboral"></asp:Label><br />
-            <asp:TextBox ID="txtRange" runat="server" CssClass="form-control" />
-      </div>
 
-      <asp:Button ID="btnSave" runat="server" Text="Guardar" CssClass="btn btn-primary"
-                  OnClick="btnSave_Click" />
-      <asp:Button ID="btnCancel" runat="server" CausesValidation="false" Text="Cancelar" CssClass="btn btn-secondary ms-2"
-                  OnClick="btnCancel_Click" />
-      <br /><br />
-      <asp:Label ID="lblMsg" runat="server" />
+    <div class="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-2xl p-8">
+        <h2 class="text-2xl font-bold text-blue-700 mb-6 text-center">
+            👤 Alta de Empleado
+        </h2>
+
+        <!-- Nombre -->
+        <div class="mb-4">
+            <asp:Label runat="server" AssociatedControlID="txtFirst" Text="Nombre:" CssClass="block font-medium text-gray-700 mb-1" />
+            <asp:TextBox ID="txtFirst" runat="server"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <asp:RequiredFieldValidator ID="reqFirst" runat="server"
+                ControlToValidate="txtFirst" ErrorMessage="⚠️ El nombre es obligatorio."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+            <asp:RegularExpressionValidator ID="valLetters" runat="server"
+                ControlToValidate="txtFirst"
+                ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]{1,25}$"
+                ErrorMessage="⚠️ Solo letras, máximo 25 caracteres."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+        </div>
+
+        <!-- Apellido -->
+        <div class="mb-4">
+            <asp:Label runat="server" AssociatedControlID="txtLast" Text="Apellido:" CssClass="block font-medium text-gray-700 mb-1" />
+            <asp:TextBox ID="txtLast" runat="server"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <asp:RequiredFieldValidator ID="reqLast" runat="server"
+                ControlToValidate="txtLast" ErrorMessage="⚠️ El apellido es obligatorio."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+            <asp:Label runat="server" AssociatedControlID="txtEmail" Text="Correo electrónico:" CssClass="block font-medium text-gray-700 mb-1" />
+            <asp:TextBox ID="txtEmail" runat="server"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <asp:RequiredFieldValidator ID="reqEmail" runat="server"
+                ControlToValidate="txtEmail" ErrorMessage="⚠️ El correo es obligatorio."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+            <asp:RegularExpressionValidator ID="valEmail" runat="server"
+                ControlToValidate="txtEmail"
+                ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                ErrorMessage="⚠️ Formato de correo inválido."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-4">
+            <asp:Label runat="server" AssociatedControlID="txtPhone" Text="Teléfono:" CssClass="block font-medium text-gray-700 mb-1" />
+            <asp:TextBox ID="txtPhone" runat="server"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <asp:RegularExpressionValidator ID="valPhone" runat="server"
+                ControlToValidate="txtPhone" ValidationExpression="^\d{7,15}$"
+                ErrorMessage="⚠️ Ingrese solo números (7 a 15 dígitos)."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+        </div>
+
+        <!-- Fecha de Nacimiento -->
+        <div class="mb-4">
+            <asp:Label runat="server" AssociatedControlID="txtBirth" Text="Fecha de nacimiento (dd/MM/yyyy):"
+                CssClass="block font-medium text-gray-700 mb-1" />
+            <asp:TextBox ID="txtBirth" runat="server"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <asp:RequiredFieldValidator ID="reqBirth" runat="server"
+                ControlToValidate="txtBirth" ErrorMessage="⚠️ La fecha de nacimiento es obligatoria."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+        </div>
+
+        <!-- Departamento -->
+        <div class="mb-4">
+            <asp:Label runat="server" AssociatedControlID="txtDept" Text="Departamento laboral:" CssClass="block font-medium text-gray-700 mb-1" />
+            <asp:TextBox ID="txtDept" runat="server"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <!-- Rango -->
+        <div class="mb-6">
+            <asp:Label runat="server" AssociatedControlID="txtRange" Text="Rango laboral:" CssClass="block font-medium text-gray-700 mb-1" />
+            <asp:TextBox ID="txtRange" runat="server"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <!-- Botones -->
+        <div class="flex justify-center gap-4">
+            <asp:Button ID="btnSave" runat="server" Text="💾 Guardar"
+                CssClass="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                OnClick="btnSave_Click" />
+
+            <asp:Button ID="btnCancel" runat="server" CausesValidation="false" Text="❌ Cancelar"
+                CssClass="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                OnClick="btnCancel_Click" />
+        </div>
+
+        <!-- Mensaje -->
+        <asp:Label ID="lblMsg" runat="server" CssClass="block text-center mt-4 font-semibold"></asp:Label>
+    </div>
+
 </asp:Content>
-

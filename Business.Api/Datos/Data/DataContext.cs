@@ -1,7 +1,6 @@
-﻿using Business.Api.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Business.Api.Data
+namespace Business.Api.Datos.Data
 {
     public class DataContext : DbContext
     {

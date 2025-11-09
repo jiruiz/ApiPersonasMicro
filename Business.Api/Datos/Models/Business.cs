@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Business.Api.Models
+namespace Business.Api.Datos.Models
 {
     /// <summary>
     /// Represents a business with fiscal and contact information.

@@ -15,24 +15,6 @@ namespace ManageBusinessFront.Business
     {
 
         /// <summary>
-        /// Control idLabel.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label idLabel;
-
-        /// <summary>
-        /// Control idTextBox.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox idTextBox;
-
-        /// <summary>
         /// Control nameLabel.
         /// </summary>
         /// <remarks>
@@ -49,6 +31,15 @@ namespace ManageBusinessFront.Business
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nameTextBox;
+
+        /// <summary>
+        /// Control rfvName.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
 
         /// <summary>
         /// Control industryLabel.
@@ -69,6 +60,15 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.TextBox industryTextBox;
 
         /// <summary>
+        /// Control rfvIndustry.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIndustry;
+
+        /// <summary>
         /// Control phoneNumberLabel.
         /// </summary>
         /// <remarks>
@@ -85,6 +85,24 @@ namespace ManageBusinessFront.Business
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox phoneNumberTextBox;
+
+        /// <summary>
+        /// Control rfvPhoneNumber.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPhoneNumber;
+
+        /// <summary>
+        /// Control revPhoneNumber.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPhoneNumber;
 
         /// <summary>
         /// Control emailLabel.
@@ -105,6 +123,24 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.TextBox emailTextBox;
 
         /// <summary>
+        /// Control rfvEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
+
+        /// <summary>
+        /// Control revEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
+
+        /// <summary>
         /// Control taxIdLabel.
         /// </summary>
         /// <remarks>
@@ -121,6 +157,24 @@ namespace ManageBusinessFront.Business
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox taxIdTextBox;
+
+        /// <summary>
+        /// Control rfvTaxId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTaxId;
+
+        /// <summary>
+        /// Control revTaxId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revTaxId;
 
         /// <summary>
         /// Control VATStatusLabel.
@@ -141,6 +195,15 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.TextBox VATStatusTextBox;
 
         /// <summary>
+        /// Control rfvVATStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvVATStatus;
+
+        /// <summary>
         /// Control legalNameLabel.
         /// </summary>
         /// <remarks>
@@ -157,6 +220,15 @@ namespace ManageBusinessFront.Business
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox legalNameTextBox;
+
+        /// <summary>
+        /// Control rfvLegalName.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLegalName;
 
         /// <summary>
         /// Control startOfActivitiesLabel.
@@ -195,6 +267,24 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.TextBox yearsInIndustryTextBox;
 
         /// <summary>
+        /// Control rfvYearsInIndustry.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvYearsInIndustry;
+
+        /// <summary>
+        /// Control rvYearsInIndustry.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvYearsInIndustry;
+
+        /// <summary>
         /// Control streetLabel.
         /// </summary>
         /// <remarks>
@@ -211,6 +301,15 @@ namespace ManageBusinessFront.Business
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox streetTextBox;
+
+        /// <summary>
+        /// Control rfvStreet.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStreet;
 
         /// <summary>
         /// Control cityLabel.
@@ -231,6 +330,15 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.TextBox cityTextBox;
 
         /// <summary>
+        /// Control rfvCity.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCity;
+
+        /// <summary>
         /// Control stateLabel.
         /// </summary>
         /// <remarks>
@@ -247,6 +355,15 @@ namespace ManageBusinessFront.Business
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox stateTextBox;
+
+        /// <summary>
+        /// Control rfvState.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvState;
 
         /// <summary>
         /// Control btnAddBusiness.

@@ -78,6 +78,15 @@ namespace ManageBusinessFront.Users
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqEmail;
 
         /// <summary>
+        /// Control valEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valEmail;
+
+        /// <summary>
         /// Control txtpassword.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace ManageBusinessFront.Users
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPassword;
+
+        /// <summary>
+        /// Control valPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valPass;
 
         /// <summary>
         /// Control btnSave.

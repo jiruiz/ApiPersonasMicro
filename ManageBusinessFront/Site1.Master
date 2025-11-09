@@ -20,7 +20,7 @@
             <asp:HyperLink
                 ID="lnkHome"
                 runat="server"
-                NavigateUrl="~/Business/BusinessList.aspx"
+                NavigateUrl="~/Home/Home.aspx"
                 CssClass="text-xl font-semibold hover:underline hover:text-gray-200">
                 📊 Gestión de Negocios
             </asp:HyperLink>
