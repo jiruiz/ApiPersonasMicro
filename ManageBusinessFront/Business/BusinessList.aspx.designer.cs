@@ -15,6 +15,15 @@ namespace ManageBusinessFront.Business
     {
 
         /// <summary>
+        /// Control ConfirmDeleteModal1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::ManageBusinessFront.Common.ConfirmDeleteModal ConfirmDeleteModal1;
+
+        /// <summary>
         /// Control btnAdd.
         /// </summary>
         /// <remarks>

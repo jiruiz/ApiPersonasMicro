@@ -33,6 +33,7 @@ namespace ManageBusinessFront.Business
                 await LoadBusinessAsync();
             }
 
+            ConfirmDeleteModal1.OnDeleteConfirmed += ConfirmDeleteModal1_OnDeleteConfirmed;
         }
         protected async void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -88,12 +89,6 @@ namespace ManageBusinessFront.Business
                 Response.Redirect($"~/Business/BusinessEdit.aspx?idBusiness={id}", false);
             }
 
-            if (e.CommandName == "DeleteRow")
-            {
-                await DeleteBusinessAsync(id);
-                Response.Redirect(Request.RawUrl, false);
-            }
-
             if (e.CommandName == "GoToEmployees")
             {
                 Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={id}", false);
@@ -105,13 +100,21 @@ namespace ManageBusinessFront.Business
             Response.Redirect($"~/Business/BusinessAdd.aspx", false);
         }
 
+        protected async void ConfirmDeleteModal1_OnDeleteConfirmed(object sender, string objectId)
+        {
+            if (int.TryParse(objectId, out var id))
+            {
+                await DeleteBusinessAsync(id);
+            }
+        }
+
         private async Task DeleteBusinessAsync(int id)
         {
             using (var client = new HttpClient())
             {
                 var res = await client.DeleteAsync($"https://localhost:7038/api/business/{id}");
             }
+            await LoadBusinessAsync();
         }
-
     }
 }

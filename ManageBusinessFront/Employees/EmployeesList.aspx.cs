@@ -59,6 +59,8 @@ namespace ManageBusinessFront.Employees
                 // recuperar el valor durante postbacks
                 idBusiness = (int)(ViewState["idBusiness"] ?? 1);
             }
+
+            ConfirmDeleteModal1.OnDeleteConfirmed += ConfirmDeleteModal1_OnDeleteConfirmed;
         }
 
         protected async Task LoadEmployeesAsync(int idBusiness)
@@ -89,27 +91,19 @@ namespace ManageBusinessFront.Employees
                 // Redirigir a la página de edición con ambos IDs
                 Response.Redirect($"~/Employees/EditEmployee.aspx?idEmployee={idEmployee}&idBusiness={idBusiness}", false);
             }
-
-            if (e.CommandName == "DeleteRow")
-            {
-                int id = Convert.ToInt32(e.CommandArgument);
-                await DeleteEmployeeAsync(id);
-                Response.Redirect(Request.RawUrl, false);
-            }
-        }
-
-
-        private async Task DeleteEmployeeAsync(int id)
-        {
-            using (var client = new HttpClient())
-            {
-                var res = await client.DeleteAsync($"https://localhost:7199/api/Employee/{id}");
-            }
         }
 
         protected void btnAddEmployee_Click(object sender, EventArgs e)
         {
             Response.Redirect($"CreateEmployee.aspx?idBusiness={idBusiness}", false);
+        }
+
+        protected async void ConfirmDeleteModal1_OnDeleteConfirmed(object sender, string objectId)
+        {
+            if (int.TryParse(objectId, out var id))
+            {
+                await DeleteEmployeeAsync(id);
+            }
         }
 
         private async Task LoadBusinessData(int businessId)
@@ -126,6 +120,19 @@ namespace ManageBusinessFront.Employees
 
             var business = JsonConvert.DeserializeObject<Business>(json);
             ViewState["BusinessName"] = $"{business.Id} - {business.Name}";
+        }
+
+
+        private async Task DeleteEmployeeAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                var res = await client.DeleteAsync($"https://localhost:7199/api/Employee/{id}");
+            }
+            int businessId = 4; // valor por defecto
+            if (Request.QueryString["idBusiness"] != null)
+                int.TryParse(Request.QueryString["idBusiness"], out businessId);
+            await LoadEmployeesAsync(businessId);
         }
     }
 }

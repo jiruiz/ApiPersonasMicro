@@ -7,38 +7,29 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace ManageBusinessFront.Employees
+namespace ManageBusinessFront.Common
 {
 
 
-    public partial class EmployeesList
+    public partial class ConfirmDeleteModal
     {
 
         /// <summary>
-        /// Control ConfirmDeleteModal1.
+        /// Control hfObjectId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::ManageBusinessFront.Common.ConfirmDeleteModal ConfirmDeleteModal1;
+        protected global::System.Web.UI.WebControls.HiddenField hfObjectId;
 
         /// <summary>
-        /// Control btnAddEmployee.
+        /// Control btnConfirmDelete.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddEmployee;
-
-        /// <summary>
-        /// Control gvEmployees.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEmployees;
+        protected global::System.Web.UI.WebControls.Button btnConfirmDelete;
     }
 }

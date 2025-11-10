@@ -2,8 +2,10 @@
     CodeBehind="EmployeesList.aspx.cs"
     Inherits="ManageBusinessFront.Employees.EmployeesList"
     MasterPageFile="~/Site1.Master" %>
+<%@ Register Src="~/Common/ConfirmDeleteModal.ascx" TagPrefix="uc" TagName="ConfirmDeleteModal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <uc:ConfirmDeleteModal ID="ConfirmDeleteModal1" runat="server" />
 
     <!-- titulo -->
 <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
@@ -50,8 +52,8 @@
                             <asp:Button ID="btnDelete" runat="server" Text="🗑️ Eliminar"
                                 CssClass="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
                                 CommandName="DeleteRow"
-                                CommandArgument='<%# Eval("Id") %>'
-                                OnClientClick="return confirm('¿Seguro que deseas eliminar este empleado?');" />
+                                OnClientClick='<%# "showDeleteModal(\"" + Eval("Id") + "\"); return false;" %>' />
+
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -59,6 +61,13 @@
 
         </asp:GridView>
     </div>
+    <script>
+        function showDeleteModal(id) {
+        var hiddenField = document.getElementById('<%= ConfirmDeleteModal1.FindControl("hfObjectId").ClientID %>');
+            hiddenField.value = id;
+            $('#confirmModal').modal('show');
+        }
+    </script>
 
 </asp:Content>
 
