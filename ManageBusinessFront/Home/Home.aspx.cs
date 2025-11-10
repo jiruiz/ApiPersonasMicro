@@ -12,12 +12,12 @@ namespace ManageBusinessFront.Home
 
         protected void btnGoToBusinesses_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Business/BusinessList.aspx");
+            Response.Redirect("~/Business/BusinessList.aspx",false);
         }
 
         protected void btnGoToEmployees_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Employees/EmployeesList.aspx");
+            Response.Redirect("~/Employees/EmployeesList.aspx",false);
         }
     }
 }

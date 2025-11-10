@@ -2,8 +2,12 @@
     CodeBehind="BusinessList.aspx.cs"
     Inherits="ManageBusinessFront.Business.BusinessList"
     MasterPageFile="~/Site1.Master" %>
+<%@ Register Src="~/Common/ConfirmDeleteModal.ascx" TagPrefix="uc" TagName="ConfirmDeleteModal" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <uc:ConfirmDeleteModal ID="ConfirmDeleteModal1" runat="server" />
+
     <h2 class="text-2xl font-bold text-center text-blue-700 mb-6">📊 Listado de Negocios</h2>
 
     <!-- botón dar de alta -->
@@ -50,11 +54,17 @@
                                             CommandName="EditRow"
                                             CommandArgument='<%# Eval("Id") %>' />
 
-                                        <asp:Button ID="btnDelete" runat="server" Text="🗑️ Eliminar"
+                                        <%--<asp:Button ID="btnDelete" runat="server" Text="🗑️ Eliminar"
                                             CssClass="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
                                             CommandName="DeleteRow"
                                             CommandArgument='<%# Eval("Id") %>'
-                                            OnClientClick="return confirm('¿Seguro que deseas eliminar este negocio?');" />
+                                            OnClientClick="return confirm('¿Seguro que deseas eliminar este negocio?');" />--%>
+
+                                        <asp:Button ID="btnDelete" runat="server" Text="🗑️ Eliminar"
+                                            CssClass="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
+                                            CommandArgument='<%# Eval("Id") %>'
+                                            CommandName="DeleteRow"
+                                            OnClientClick='<%# "showDeleteModal(\"" + Eval("Id") + "\"); return false;" %>' />
 
                                         <asp:Button ID="btnEmployees" runat="server" Text="👨‍💼 Empleados"
                                             CssClass="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
@@ -69,4 +79,11 @@
             </tr>
         </table>
     </div>
+    <script>
+        function showDeleteModal(id) {
+        var hiddenField = document.getElementById('<%= ConfirmDeleteModal1.FindControl("hfObjectId").ClientID %>');
+            hiddenField.value = id;
+            $('#confirmModal').modal('show');
+        }
+    </script>
 </asp:Content>
