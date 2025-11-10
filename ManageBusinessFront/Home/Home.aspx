@@ -8,7 +8,7 @@
     <div class="flex flex-col items-center justify-center mt-20 space-y-6 text-center">
         <h1 class="text-3xl font-extrabold text-blue-700">🏢 Bienvenido a ManageBusinessFront</h1>
         <p class="text-gray-600 text-lg max-w-xl">
-            Este panel le permite administrar <span class="font-semibold text-blue-600">Negocios</span> y
+            Este sistema le permitirá administrar sus <span class="font-semibold text-blue-600">Negocios</span> y los
             <span class="font-semibold text-blue-600">Empleados</span> de forma sencilla y eficiente.
         </p>
 
@@ -17,9 +17,9 @@
                 CssClass="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-xl shadow-md transition-transform transform hover:scale-105"
                 OnClick="btnGoToBusinesses_Click" />
 
-            <asp:Button ID="btnGoToEmployees" runat="server" Text="👨‍💼 Ir a Empleados Generales"
+           <!-- <asp:Button ID="btnGoToEmployees" runat="server" Text="👨‍💼 Ir a Empleados Generales"
                 CssClass="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl shadow-md transition-transform transform hover:scale-105"
-                OnClick="btnGoToEmployees_Click" />
+                OnClick="btnGoToEmployees_Click" /> -->
         </div>
 
         <div class="mt-12 text-gray-500 text-sm">

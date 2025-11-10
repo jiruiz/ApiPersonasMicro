@@ -18,5 +18,7 @@ namespace Business.Api.Negocio.Interfaces
 
         // ✅ Guardar cambios en la base de datos
         bool Save();
+
+  
     }
 }

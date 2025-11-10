@@ -13,6 +13,25 @@ namespace ManageBusinessFront
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
+           // Si no hay usuario en sesión, ocultar el botón de logout
+            if (Session["IdUsuario"] == null)
+            {
+                lnkLogout.Visible = false;
+                lnkBusiness.Visible = false;
+                lnkEmployees.Visible = false;
+
+            }
+            else
+            {
+                lnkLogout.Visible = true;
+                lnkBusiness.Visible = true;
+                lnkEmployees.Visible = true;
+            }
+
+
+
         }
+
+
     }
 }

@@ -135,5 +135,6 @@ namespace Business.Api.Presentacion.Controllers
 
             return Ok(businesses);
         }
-    }
+
+      }
 }

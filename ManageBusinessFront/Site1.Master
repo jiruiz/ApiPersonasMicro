@@ -25,15 +25,16 @@
                 📊 Gestión de Negocios
             </asp:HyperLink>
             <!--ir al listado de empleados-->
-            <div class="space-x-6">
+           <!-- <div class="space-x-6">
                 <asp:HyperLink
                     ID="lnkEmployees"
                     runat="server"
                     NavigateUrl="~/Employees/EmployeesList.aspx?idBusiness=1"
                     CssClass="hover:underline hover:text-gray-200">
                     👨‍💼 Empleados
-                </asp:HyperLink>
+                </asp:HyperLink>-->
                 <!--ir a negocios-->
+            <div class="space-x-6 flex items-center justify-end">
                 <asp:HyperLink
                     ID="lnkBusiness"
                     runat="server"
@@ -45,8 +46,9 @@
                 <asp:HyperLink
                     ID="lnkLogout"
                     runat="server"
-                    NavigateUrl="~/Login.aspx"
-                    CssClass="hover:underline hover:text-gray-200">
+                    NavigateUrl="~/Logout.aspx"
+                    CssClass="hover:underline hover:text-gray-200"
+                    OnClick="lnkLogout_Click">
                     🔴 Logout
                 </asp:HyperLink>
             </div>

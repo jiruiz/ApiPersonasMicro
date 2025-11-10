@@ -54,7 +54,8 @@ namespace Business.Api.Datos.Repository
                 YearsInIndustry = businessDto.YearsInIndustry,
                 Street = businessDto.Street,
                 City = businessDto.City,
-                State = businessDto.State
+                State = businessDto.State,
+                
             };
 
             _context.Businesses.Add(business);
@@ -97,5 +98,7 @@ namespace Business.Api.Datos.Repository
                 })
                 .ToList();
         }
+
+        
     }
 }
