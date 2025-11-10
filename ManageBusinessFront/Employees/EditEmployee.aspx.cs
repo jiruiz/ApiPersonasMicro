@@ -28,6 +28,7 @@ namespace ManageBusinessFront.Employees
             public string Departament { get; set; }
             public string Range { get; set; }
 
+            public string HireDate { get; set; }
         }
 
         protected async void Page_Load(object sender, EventArgs e)
