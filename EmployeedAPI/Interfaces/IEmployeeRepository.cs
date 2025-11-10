@@ -7,6 +7,8 @@ namespace EmployeedAPI.Interfaces
     {
         ICollection<EmployeeDto> GetEmployees();
 
+        ICollection<EmployeeDto> GetAllEmployees();
+
         Employee GetEmployeeById(int id);
         ICollection<Employee> GetEmployeesIdBusiness(int idBusiness);
         bool AddEmployee(EmployeeCreateDto employee);
@@ -15,6 +17,10 @@ namespace EmployeedAPI.Interfaces
         bool Save();
 
         bool DeleteEmployee(int idEmployee);
+
+        bool SoftDeleteEmployee (int idEmployee);
+
+        bool RestoreEmployee(int idEmployee);
 
     }
 }

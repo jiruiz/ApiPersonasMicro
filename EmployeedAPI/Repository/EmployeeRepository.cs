@@ -18,12 +18,36 @@ namespace EmployeedAPI.Repository
         public ICollection<EmployeeDto> GetEmployees()
         {
             return _context.Employees
+                .Where(e=>!e.IsDeleted)
                 .Select(e => new EmployeeDto
                 {
                     Id = e.Id,
                     EmployeeCode = e.EmployeeCode,
                     FirstName = e.FirstName,
                     LastName = e.LastName,
+                    Document = e.Document,
+                    Email = e.Email,
+                    Phone = e.Phone,
+                    BirthdayDate = e.BirthdayDate,
+                    BusinessId = e.BusinessId,
+                    Departament = e.Departament,
+                    HireDate = e.HireDate,
+                    Range = e.Range,
+                    State = e.State
+                })
+                .ToList();
+        }
+
+        public ICollection<EmployeeDto> GetAllEmployees()
+        {
+            return _context.Employees
+                .Select(e => new EmployeeDto
+                {
+                    Id = e.Id,
+                    EmployeeCode = e.EmployeeCode,
+                    FirstName = e.FirstName,
+                    LastName = e.LastName,
+                    Document = e.Document,
                     Email = e.Email,
                     Phone = e.Phone,
                     BirthdayDate = e.BirthdayDate,
@@ -45,10 +69,12 @@ namespace EmployeedAPI.Repository
                 LastName = employeeDto.LastName,
                 Email = employeeDto.Email,
                 Phone = employeeDto.Phone,
+                Document = employeeDto.Document,
                 BirthdayDate = employeeDto.BirthdayDate,
                 BusinessId = employeeDto.BusinessId,
                 Departament = employeeDto.Departament,
-                HireDate = employeeDto.HireDate,
+                //si no viene el dato, se usa la actual
+                HireDate = employeeDto.HireDate == default ? DateOnly.FromDateTime(DateTime.Now) : employeeDto.HireDate,
                 Range = employeeDto.Range,
                 State = employeeDto.State
             };
@@ -85,6 +111,7 @@ namespace EmployeedAPI.Repository
 
             existingEmployee.FirstName = employeeDto.FirstName;
             existingEmployee.LastName = employeeDto.LastName;
+            existingEmployee.Document = employeeDto.Document;
             existingEmployee.Email = employeeDto.Email;
             existingEmployee.Phone = employeeDto.Phone;
             existingEmployee.Departament = employeeDto.Departament;
@@ -107,5 +134,26 @@ namespace EmployeedAPI.Repository
             return Save();
         
         }
+
+        public bool SoftDeleteEmployee(int id)
+        {
+            var employee = _context.Employees.FirstOrDefault(e => e.Id == id);
+            if (employee == null)
+                return false;
+
+            employee.IsDeleted = true;
+            return Save(); 
+        }
+
+        public bool RestoreEmployee(int id)
+        {
+            var employee = _context.Employees.FirstOrDefault(e => e.Id == id);
+            if (employee == null)
+                return false;
+
+            employee.IsDeleted = false;
+            return Save();
+        }
+
     }
 }

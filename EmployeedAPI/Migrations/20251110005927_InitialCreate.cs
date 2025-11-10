@@ -18,6 +18,7 @@ namespace EmployeedAPI.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     EmployeeCode = table.Column<string>(type: "TEXT", nullable: false),
+                    Document = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     BirthdayDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
@@ -27,12 +28,19 @@ namespace EmployeedAPI.Migrations
                     Departament = table.Column<string>(type: "TEXT", nullable: false),
                     Range = table.Column<string>(type: "TEXT", nullable: false),
                     HireDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    State = table.Column<string>(type: "TEXT", nullable: false)
+                    State = table.Column<string>(type: "TEXT", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Document",
+                table: "Employees",
+                column: "Document",
+                unique: true);
         }
 
         /// <inheritdoc />
