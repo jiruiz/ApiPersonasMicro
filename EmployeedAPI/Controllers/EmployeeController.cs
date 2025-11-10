@@ -49,6 +49,22 @@ namespace EmployeedAPI.Controllers
             return Ok(employees);
         }
 
+        // metodo que retorna todos los empleados, hasta los eliminados
+        [HttpGet("all/business/{idBusiness}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Employee>))]
+        [ProducesResponseType(404)]
+        public IActionResult GetAllEmployeesByIdBusiness(int idBusiness)
+        {
+            var employees = _employeeRepository.GetAllEmployeesIdBusiness(idBusiness);
+
+            if (!employees.Any())
+            {
+                return NotFound($"No employees found for BusinessId {idBusiness}");
+            }
+
+            return Ok(employees);
+        }
+
         [HttpPost]
         public IActionResult CreateEmployee([FromBody] EmployeeCreateDto employee)
         {
@@ -101,7 +117,7 @@ namespace EmployeedAPI.Controllers
 
         }
 
-        [HttpPut("/soft_delete/{idEmployee}")]
+        [HttpPut("softDelete/{idEmployee}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public IActionResult SoftDeleteEmployee(int idEmployee)
@@ -114,7 +130,7 @@ namespace EmployeedAPI.Controllers
             return NoContent();
         }
 
-        [HttpPut("/restore{idEmployee}")]
+        [HttpPut("restore/{idEmployee}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public IActionResult RestoreEmployee(int idEmployee)

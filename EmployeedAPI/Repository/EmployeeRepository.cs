@@ -33,7 +33,9 @@ namespace EmployeedAPI.Repository
                     Departament = e.Departament,
                     HireDate = e.HireDate,
                     Range = e.Range,
-                    State = e.State
+                    State = e.State,
+                    IsDeleted = e.IsDeleted,
+
                 })
                 .ToList();
         }
@@ -55,7 +57,8 @@ namespace EmployeedAPI.Repository
                     Departament = e.Departament,
                     HireDate = e.HireDate,
                     Range = e.Range,
-                    State = e.State
+                    State = e.State,
+                    IsDeleted = e.IsDeleted
                 })
                 .ToList();
         }
@@ -94,7 +97,12 @@ namespace EmployeedAPI.Repository
 
         public ICollection<Employee> GetEmployeesIdBusiness(int idBusiness)
         {
-            return _context.Employees.Where(e=>e.BusinessId == idBusiness).ToList();
+            return _context.Employees.Where(e=>e.BusinessId == idBusiness && !e.IsDeleted).ToList();
+        }
+
+        public ICollection<Employee> GetAllEmployeesIdBusiness(int idBusiness)
+        {
+            return _context.Employees.Where(e => e.BusinessId == idBusiness).ToList();
         }
 
         public Employee GetEmployeeById(int id) { 

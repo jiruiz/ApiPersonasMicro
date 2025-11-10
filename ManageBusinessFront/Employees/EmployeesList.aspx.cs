@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 namespace ManageBusinessFront.Employees
@@ -15,13 +16,15 @@ namespace ManageBusinessFront.Employees
             public string EmployeeCode { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
+
+            public string Document {  get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
             public string Departament {  get; set; }
             public string Range { get; set; }
-
             public string HireDate { get; set; }
-            public string State { get; set; }
+
+            public bool IsDeleted { get; set; }
         }
 
         public class Business
@@ -51,7 +54,7 @@ namespace ManageBusinessFront.Employees
 
                 ViewState["idBusiness"] = businessId; // guardamos en ViewState, para reenviarlo correctamente
 
-                await LoadEmployeesAsync(businessId);
+                await LoadEmployeesAsync(businessId, includedDeleted: false);
                 await LoadBusinessData(businessId);
             }
             else
@@ -61,10 +64,22 @@ namespace ManageBusinessFront.Employees
             }
         }
 
-        protected async Task LoadEmployeesAsync(int idBusiness)
+        protected async Task LoadEmployeesAsync(int idBusiness, bool includedDeleted)
         {
             var client = new HttpClient();
-            var res = await client.GetAsync($"http://localhost:5002/api/Employee/business/{idBusiness}");
+            
+            string url;
+            if (!includedDeleted)
+            {
+               url = $"http://localhost:5002/api/Employee/business/{idBusiness}";
+            }
+            else
+            {
+                url = $"http://localhost:5002/api/Employee/all/business/{idBusiness}";
+            }
+            
+            var res = await client.GetAsync(url);
+
             if (!res.IsSuccessStatusCode)
             {
                 // Si la API devuelve error, porque no hay empleados por ej
@@ -94,7 +109,13 @@ namespace ManageBusinessFront.Employees
             {
                 int id = Convert.ToInt32(e.CommandArgument);
                 await DeleteEmployeeAsync(id);
-                Response.Redirect(Request.RawUrl, false);
+                await LoadEmployeesAsync(idBusiness, chkShowDeleted.Checked);
+            }
+            if (e.CommandName == "ReactivateRow")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+                await ReActivateEmployeeAsync(id);
+                await LoadEmployeesAsync(idBusiness, chkShowDeleted.Checked);
             }
         }
 
@@ -103,13 +124,27 @@ namespace ManageBusinessFront.Employees
         {
             using (var client = new HttpClient())
             {
-                var res = await client.DeleteAsync($"https://localhost:7199/api/Employee/{id}");
+                var res = await client.PutAsync($"https://localhost:7199/api/Employee/softDelete/{id}",null);
+            }
+        }
+
+        private async Task ReActivateEmployeeAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                var res = await client.PutAsync($"https://localhost:7199/api/Employee/restore/{id}", null);
             }
         }
 
         protected void btnAddEmployee_Click(object sender, EventArgs e)
         {
             Response.Redirect($"CreateEmployee.aspx?idBusiness={idBusiness}", false);
+        }
+
+        protected async void chkShowDeleted_CheckedChanged(object sender, EventArgs e)
+        {
+            idBusiness = (int)(ViewState["idBusiness"] ?? 1);
+            await LoadEmployeesAsync(idBusiness, chkShowDeleted.Checked);
         }
 
         private async Task LoadBusinessData(int businessId)
@@ -127,5 +162,6 @@ namespace ManageBusinessFront.Employees
             var business = JsonConvert.DeserializeObject<Business>(json);
             ViewState["BusinessName"] = $"{business.Id} - {business.Name}";
         }
+
     }
 }

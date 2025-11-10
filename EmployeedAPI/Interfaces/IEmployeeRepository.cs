@@ -11,6 +11,8 @@ namespace EmployeedAPI.Interfaces
 
         Employee GetEmployeeById(int id);
         ICollection<Employee> GetEmployeesIdBusiness(int idBusiness);
+
+        ICollection<Employee> GetAllEmployeesIdBusiness(int idBusiness);
         bool AddEmployee(EmployeeCreateDto employee);
 
         bool EditEmployee(EmployeeCreateDto employee, int idEmployee);

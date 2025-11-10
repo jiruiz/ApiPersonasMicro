@@ -18,8 +18,14 @@
             OnClick="btnAddEmployee_Click" />
     </div>
 
+
     <!-- tabla -->
     <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200 max-w-6xl mx-auto bg-white">
+    <asp:CheckBox ID="chkShowDeleted" runat="server"
+        Text="Mostrar empleados eliminados"
+        AutoPostBack="true"
+        OnCheckedChanged="chkShowDeleted_CheckedChanged"
+        CssClass="mb-4 font-medium text-gray-700" />
         <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="False"
             CssClass="min-w-full table-auto border-collapse text-sm text-gray-800"
             HeaderStyle-BackColor="#1e3a8a"
@@ -27,12 +33,13 @@
             GridLines="None"
             RowStyle-CssClass="border-b hover:bg-gray-100 transition"
             AlternatingRowStyle-CssClass="bg-gray-50"
-            OnRowCommand="gvEmployees_RowCommand">
+            OnRowCommand="gvEmployees_RowCommand" >
 
             <Columns>
                 <asp:BoundField DataField="EmployeeCode" HeaderText="Código" />
                 <asp:BoundField DataField="FirstName" HeaderText="Nombre" />
                 <asp:BoundField DataField="LastName" HeaderText="Apellido" />
+                <asp:BoundField DataField="Document" HeaderText="Documento" />
                 <asp:BoundField DataField="Departament" HeaderText="Sector" />
                 <asp:BoundField DataField="Range" HeaderText="Rango" />
                 <asp:BoundField DataField="HireDate" HeaderText="F. Contratación" />
@@ -51,7 +58,15 @@
                                 CssClass="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
                                 CommandName="DeleteRow"
                                 CommandArgument='<%# Eval("Id") %>'
+                                Enabled='<%# !(bool)Eval("IsDeleted") %>'
                                 OnClientClick="return confirm('¿Seguro que deseas eliminar este empleado?');" />
+
+                           <asp:LinkButton ID="btnReactivate" runat="server"
+                                CssClass="bg-red-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
+                                CommandName="ReactivateRow"
+                                CommandArgument='<%# Eval("Id") %>'
+                                Visible='<%# (bool)Eval("IsDeleted") %>'
+                                Text="♻️ Reactivar" />
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>
