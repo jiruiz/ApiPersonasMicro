@@ -12,6 +12,21 @@
             CssClass="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all duration-200 hover:scale-105"
             OnClick="btnAdd_Click" />
     </div>
+    <!-- Barra de búsqueda -->
+    <div class="text-center mb-6 flex justify-center items-center gap-3">
+        <asp:TextBox ID="txtBuscar" runat="server"
+            CssClass="border border-gray-300 rounded-lg px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="🔍 Buscar por nombre o CUIT..." />
+    
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar"
+            CssClass="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition"
+            OnClick="btnBuscar_Click" />
+
+        <asp:Button ID="btnLimpiar" runat="server" Text="❌ Limpiar"
+            CssClass="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition"
+            OnClick="btnLimpiar_Click" />
+    </div>
+
 
     <!-- contenedor con scroll y margen -->
     <div style="overflow-x:auto; max-width:100%; padding:0 12px 12px 12px;">

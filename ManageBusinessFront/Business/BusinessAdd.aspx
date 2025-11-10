@@ -69,13 +69,22 @@
                 ValidationExpression="^\d{11}$" Display="Dynamic" />
         </div>
 
-        <!-- Condición IVA -->
+        <!-- Condición IVA (ComboBox) -->
         <div>
             <asp:Label CssClass="label-text" ID="VATStatusLabel" runat="server" Text="Condición frente al IVA:" />
-            <asp:TextBox CssClass="input-text" ID="VATStatusTextBox" runat="server" />
+            <asp:DropDownList ID="VATStatusDropDown" runat="server" CssClass="input-text">
+                <asp:ListItem Text="-- Seleccione --" Value="" />
+                <asp:ListItem Text="Monotributista" Value="Monotributista" />
+                <asp:ListItem Text="Responsable Inscripto" Value="Responsable Inscripto" />
+                <asp:ListItem Text="Consumidor Final" Value="Consumidor Final" />
+            </asp:DropDownList>
+
             <asp:RequiredFieldValidator CssClass="text-danger" ID="rfvVATStatus" runat="server"
-                ControlToValidate="VATStatusTextBox" ErrorMessage="⚠️ La condición IVA es obligatoria." Display="Dynamic" />
+                ControlToValidate="VATStatusDropDown"
+                InitialValue=""
+                ErrorMessage="⚠️ Debe seleccionar una condición IVA." Display="Dynamic" />
         </div>
+
 
         <!-- Razón Social -->
         <div>
@@ -85,11 +94,15 @@
                 ControlToValidate="legalNameTextBox" ErrorMessage="⚠️ La razón social es obligatoria." Display="Dynamic" />
         </div>
 
-        <!-- Inicio de Actividades -->
+        <!-- Inicio de Actividades (moderno con selector de fecha) -->
         <div>
             <asp:Label CssClass="label-text" ID="startOfActivitiesLabel" runat="server" Text="Inicio de actividades:" />
-            <asp:Calendar ID="startOfActivitiesCalendar" runat="server" CssClass="border rounded-lg" />
+            <asp:TextBox ID="startOfActivitiesTextBox" runat="server" CssClass="input-text" TextMode="Date" />
+            <asp:RequiredFieldValidator CssClass="text-danger" ID="rfvStartDate" runat="server"
+                ControlToValidate="startOfActivitiesTextBox"
+                ErrorMessage="⚠️ La fecha de inicio es obligatoria." Display="Dynamic" />
         </div>
+
 
         <!-- Años en el rubro -->
         <div>

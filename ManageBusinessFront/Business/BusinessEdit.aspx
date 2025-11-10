@@ -1,84 +1,111 @@
-﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="BusinessEdit.aspx.cs" Inherits="ManageBusinessFront.Business.BusinessEdit"
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true"
+    CodeBehind="BusinessEdit.aspx.cs"
+    Inherits="ManageBusinessFront.Business.BusinessEdit"
     MasterPageFile="~/Site1.Master" %>
 
 
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .text-danger { color: #dc2626; font-size: 0.875rem; }
+        .input-text { width:100%; padding:0.5rem; border:1px solid #d1d5db; border-radius:0.5rem; }
+        .input-text:focus { outline:none; border-color:#3b82f6; box-shadow:0 0 0 1px #3b82f6; }
+        .label-text { display:block; font-weight:500; color:#374151; margin-bottom:0.25rem; }
+    </style>
+</asp:Content>
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h4>Edit Business</h4>
-    <div class="mb-2">
-        <asp:Label ID="idLabel" runat="server" Text="ID:" Visible="false"></asp:Label>
-        <asp:TextBox ID="idTextBox" runat="server" Visible="false"></asp:TextBox>
-        <br />
-        <br />
-        <asp:Label ID="nameLabel" runat="server" Text="Name"></asp:Label>
-        <asp:TextBox ID="nameTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+    <h2 class="text-2xl font-bold text-center text-blue-700 mb-6">✏️ Editar Negocio</h2>
 
-        <asp:Label ID="industryLabel" runat="server" Text="Industry:"></asp:Label>
-        <asp:TextBox ID="industryTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+    <div class="max-w-xl mx-auto bg-white shadow-md rounded-xl p-6 space-y-4">
+        <asp:TextBox ID="idTextBox" runat="server" Visible="false" />
 
-        <asp:Label ID="phoneNumberLabel" runat="server" Text="Phone Number:"></asp:Label>
-        <asp:TextBox ID="phoneNumberTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Nombre -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Nombre del negocio:" />
+            <asp:TextBox CssClass="input-text" ID="nameTextBox" runat="server" />
+        </div>
 
-        <asp:Label ID="emailLabel" runat="server" Text="Email:"></asp:Label>
-        <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Rubro -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Rubro:" />
+            <asp:TextBox CssClass="input-text" ID="industryTextBox" runat="server" />
+        </div>
 
-        <asp:Label ID="taxIdLabel" runat="server" Text="Taax ID (CUIT):"></asp:Label>
-        <asp:TextBox ID="taxIdTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Teléfono -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Teléfono:" />
+            <asp:TextBox CssClass="input-text" ID="phoneNumberTextBox" runat="server" />
+        </div>
 
-        <asp:Label ID="VATStatusLabel" runat="server" Text="Condicion IVA:"></asp:Label>
-        <asp:TextBox ID="VATStatusTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Email -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Correo electrónico:" />
+            <asp:TextBox CssClass="input-text" ID="emailTextBox" runat="server" />
+        </div>
 
+        <!-- CUIT -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="CUIT:" />
+            <asp:TextBox CssClass="input-text" ID="taxIdTextBox" runat="server" />
+        </div>
 
-        <asp:Label ID="legalNameLabel" runat="server" Text="Legal Name (Razon Social):"></asp:Label>
-        <asp:TextBox ID="legalNameTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Condición IVA -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Condición frente al IVA:" />
+            <asp:DropDownList ID="VATStatusDropDown" runat="server" CssClass="input-text">
+                <asp:ListItem Text="-- Seleccione --" Value="" />
+                <asp:ListItem Text="Monotributista" Value="Monotributista" />
+                <asp:ListItem Text="Responsable Inscripto" Value="Responsable Inscripto" />
+                <asp:ListItem Text="Consumidor Final" Value="Consumidor Final" />
+            </asp:DropDownList>
+        </div>
 
-        <asp:Label ID="startOfActivitiesLabel" runat="server" Text="Start Of Activities:" AutoPostBack="true"></asp:Label>
-        <asp:Calendar ID="startOfActivitiesCalendar" runat="server"></asp:Calendar>
-        <br />
-        <br />
+        <!-- Razón Social -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Razón Social:" />
+            <asp:TextBox CssClass="input-text" ID="legalNameTextBox" runat="server" />
+        </div>
 
+        <!-- Inicio de Actividades -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Inicio de actividades:" />
+            <asp:TextBox CssClass="input-text" ID="startOfActivitiesTextBox" runat="server" TextMode="Date" />
+        </div>
 
-        <asp:Label ID="yearsInIndustryLabel" runat="server" Text="Years In Industry:"></asp:Label>
-        <asp:TextBox ID="yearsInIndustryTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Años en el rubro -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Años en el rubro:" />
+            <asp:TextBox CssClass="input-text" ID="yearsInIndustryTextBox" runat="server" />
+        </div>
 
-        <asp:Label ID="streetLabel" runat="server" Text="Street:"></asp:Label>
-        <asp:TextBox ID="streetTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Calle -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Calle:" />
+            <asp:TextBox CssClass="input-text" ID="streetTextBox" runat="server" />
+        </div>
 
-        <asp:Label ID="cityLabel" runat="server" Text="City:"></asp:Label>
-        <asp:TextBox ID="cityTextBox" runat="server"></asp:TextBox>
-        <br />
-        <br />
+        <!-- Ciudad -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Ciudad:" />
+            <asp:TextBox CssClass="input-text" ID="cityTextBox" runat="server" />
+        </div>
 
-        <asp:Label ID="stateLabel" runat="server" Text="State:"></asp:Label>
-        <asp:TextBox ID="stateTextBox" runat="server"></asp:TextBox>
+        <!-- Provincia -->
+        <div>
+            <asp:Label CssClass="label-text" runat="server" Text="Provincia:" />
+            <asp:TextBox CssClass="input-text" ID="stateTextBox" runat="server" />
+        </div>
 
-        <br />
-        <br />
-        <br />
-        <br />
-        <asp:Button ID="btnSave" runat="server" Text="Guardar" CssClass="btn btn-primary"
-            OnClick="btnSave_Click" />
-        <asp:Button ID="btnCancel" runat="server" CausesValidation="false" Text="Cancelar" CssClass="btn btn-secondary ms-2"
-            OnClick="btnCancel_Click" />
-        <br />
-        <br />
-        <asp:Label ID="lblMsg" runat="server" />
+        <!-- Botones -->
+        <div class="flex justify-center gap-4 pt-4">
+            <asp:Button CssClass="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg"
+                ID="btnSave" runat="server" Text="💾 Guardar cambios" OnClick="btnSave_Click" />
+            <asp:Button CssClass="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-6 rounded-lg"
+                ID="btnCancel" runat="server" Text="Cancelar" OnClick="btnCancel_Click" CausesValidation="False" />
+        </div>
+
+        <asp:Label CssClass="block text-center mt-4 font-semibold text-green-600" ID="lblMsg" runat="server" />
     </div>
 </asp:Content>

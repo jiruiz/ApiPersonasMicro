@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Net.Http;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
@@ -15,81 +14,75 @@ namespace ManageBusinessFront.Business
         public class Business
         {
             public int Id { get; set; }
-            public string Name { get; set; } = string.Empty;
-            public string Industry { get; set; } = string.Empty;
-            public string PhoneNumber { get; set; } = string.Empty;
-            public string Email { get; set; } = string.Empty;
-            public string TaxId { get; set; } = string.Empty;
-            public string VATStatus { get; set; } = string.Empty;
-            public string LegalName { get; set; } = string.Empty;
+            public string Name { get; set; } = "";
+            public string Industry { get; set; } = "";
+            public string PhoneNumber { get; set; } = "";
+            public string Email { get; set; } = "";
+            public string TaxId { get; set; } = "";
+            public string VATStatus { get; set; } = "";
+            public string LegalName { get; set; } = "";
             public DateTime StartOfActivities { get; set; }
             public int YearsInIndustry { get; set; }
-            public string Street { get; set; } = string.Empty;
-            public string City { get; set; } = string.Empty;
-            public string State { get; set; } = string.Empty;
+            public string Street { get; set; } = "";
+            public string City { get; set; } = "";
+            public string State { get; set; } = "";
         }
 
         protected async void Page_Load(object sender, EventArgs e)
         {
-            // Desactivar validación unobtrusive (usa el modo clásico de WebForms)
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
-                if (int.TryParse(Request.QueryString["idBusiness"], out int businessId))
+                if (!int.TryParse(Request.QueryString["idBusiness"], out idBusiness))
                 {
-                    idBusiness = businessId;
-                }
-                else
-                {
-                    Response.Redirect($"~/Business/BusinessList.aspx", false);
+                    Response.Redirect("~/Business/BusinessList.aspx", false);
                     return;
                 }
 
-                if (Request.QueryString["idBusiness"] != null)
-                    int.TryParse(Request.QueryString["idBusiness"], out idBusiness);
-
-                ViewState["idBusiness"] = idBusiness; // guardamos en ViewState, para reenviarlo correctamente
-
-                await LoadBusinessDataAsync(idBusiness);
+                ViewState["idBusiness"] = idBusiness;
+                await LoadBusinessAsync(idBusiness);
             }
             else
             {
-                // recuperar el valor durante postbacks
-                idBusiness = (int)(ViewState["idBusiness"] ?? 1);
+                idBusiness = (int)(ViewState["idBusiness"] ?? 0);
             }
         }
-        protected async Task LoadBusinessDataAsync(int idBusiness)
+
+        private async Task LoadBusinessAsync(int id)
         {
             try
             {
-                var client = new HttpClient();
-                var response = await client.GetAsync($"https://localhost:7038/api/Business/{idBusiness}");
-                if (!response.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    lblMsg.Text = "Error el obtener los datos del empleado";
-                    return;
+                    var res = await client.GetAsync($"https://localhost:7038/api/Business/{id}");
+                    if (!res.IsSuccessStatusCode)
+                    {
+                        lblMsg.Text = "❌ Error al obtener los datos del negocio.";
+                        return;
+                    }
+
+                    var json = await res.Content.ReadAsStringAsync();
+                    var b = JsonConvert.DeserializeObject<Business>(json);
+
+                    idTextBox.Text = b.Id.ToString();
+                    nameTextBox.Text = b.Name;
+                    industryTextBox.Text = b.Industry;
+                    phoneNumberTextBox.Text = b.PhoneNumber;
+                    emailTextBox.Text = b.Email;
+                    taxIdTextBox.Text = b.TaxId;
+                    VATStatusDropDown.SelectedValue = b.VATStatus;
+                    legalNameTextBox.Text = b.LegalName;
+                    startOfActivitiesTextBox.Text = b.StartOfActivities.ToString("yyyy-MM-dd");
+                    yearsInIndustryTextBox.Text = b.YearsInIndustry.ToString();
+                    streetTextBox.Text = b.Street;
+                    cityTextBox.Text = b.City;
+                    stateTextBox.Text = b.State;
                 }
-                var json = await response.Content.ReadAsStringAsync();
-                var emp = JsonConvert.DeserializeObject<Business>(json);
-                idTextBox.Text = emp.Id.ToString();
-                nameTextBox.Text = emp.Name;
-                industryTextBox.Text = emp.Industry;
-                phoneNumberTextBox.Text = emp.PhoneNumber;
-                emailTextBox.Text = emp.Email;
-                taxIdTextBox.Text = emp.TaxId;
-                VATStatusTextBox.Text = emp.VATStatus;
-                legalNameTextBox.Text = emp.LegalName;
-                startOfActivitiesCalendar.SelectedDate = emp.StartOfActivities;
-                yearsInIndustryTextBox.Text = emp.YearsInIndustry.ToString();
-                streetTextBox.Text = emp.Street;
-                cityTextBox.Text = emp.City;
-                stateTextBox.Text = emp.State;
-
-
             }
             catch (Exception ex)
             {
-                lblMsg.Text = $"Error: {ex.Message}";
+                lblMsg.Text = $"❌ Error: {ex.Message}";
             }
         }
 
@@ -108,13 +101,13 @@ namespace ManageBusinessFront.Business
                 PhoneNumber = phoneNumberTextBox.Text,
                 Email = emailTextBox.Text,
                 TaxId = taxIdTextBox.Text,
-                VATStatus = VATStatusTextBox.Text,
+                VATStatus = VATStatusDropDown.SelectedValue,
                 LegalName = legalNameTextBox.Text,
-                StartOfActivities = startOfActivitiesCalendar.SelectedDate,
-                YearsInIndustry = yearsInIndustryTextBox.Text,
+                StartOfActivities = DateTime.Parse(startOfActivitiesTextBox.Text),
+                YearsInIndustry = int.Parse(yearsInIndustryTextBox.Text),
                 Street = streetTextBox.Text,
                 City = cityTextBox.Text,
-                State = stateTextBox.Text,
+                State = stateTextBox.Text
             };
 
             var json = JsonConvert.SerializeObject(business);
@@ -125,21 +118,18 @@ namespace ManageBusinessFront.Business
                 var response = await client.PutAsync($"https://localhost:7038/api/Business/{idBusiness}", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    // 🔁 Volver al listado
-                    Response.Redirect($"~/Business/BusinessList.aspx", false);
-                    Context.ApplicationInstance.CompleteRequest();
+                    Response.Redirect("~/Business/BusinessList.aspx", false);
                 }
                 else
                 {
-                    lblMsg.Text = "Error al actualizar el negocio.";
+                    lblMsg.Text = "❌ Error al actualizar el negocio.";
                 }
             }
         }
 
-        // 🔹 Cancelar → volver al listado
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect($"~/Business/BusinessList.aspx", false);
+            Response.Redirect("~/Business/BusinessList.aspx", false);
         }
     }
 }

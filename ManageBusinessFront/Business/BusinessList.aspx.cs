@@ -34,21 +34,49 @@ namespace ManageBusinessFront.Business
             }
 
         }
-        protected async Task LoadBusinessAsync()
+        protected async void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string filtro = txtBuscar.Text.Trim();
+
+            if (string.IsNullOrEmpty(filtro))
+                await LoadBusinessAsync(); // carga todo si está vacío
+            else
+                await LoadBusinessAsync(filtro); // aplica el filtro
+        }
+
+        protected async void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Text = string.Empty; // limpia el texto
+            await LoadBusinessAsync();     // recarga todo
+        }
+
+
+        protected async Task LoadBusinessAsync(string filtro = "")
         {
             using (var client = new HttpClient())
             {
-                // hay que crear esta url con el get de todos los negocios para listarlos
                 var res = await client.GetAsync("http://localhost:5168/api/Business");
                 if (res.IsSuccessStatusCode)
                 {
                     var json = await res.Content.ReadAsStringAsync();
                     var businesses = JsonConvert.DeserializeObject<List<Busine>>(json);
+
+                    // Filtro local (nombre o CUIT contiene el texto)
+                    if (!string.IsNullOrEmpty(filtro))
+                    {
+                        filtro = filtro.ToLower();
+                        businesses = businesses.FindAll(b =>
+                            (b.Name != null && b.Name.ToLower().Contains(filtro)) ||
+                            (b.TaxId != null && b.TaxId.ToLower().Contains(filtro))
+                        );
+                    }
+
                     gvBusiness.DataSource = businesses;
                     gvBusiness.DataBind();
                 }
             }
         }
+
 
         protected async void gvBusiness_RowCommand(object sender, GridViewCommandEventArgs e)
         {

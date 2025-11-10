@@ -186,13 +186,13 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.Label VATStatusLabel;
 
         /// <summary>
-        /// Control VATStatusTextBox.
+        /// Control VATStatusDropDown.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox VATStatusTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList VATStatusDropDown;
 
         /// <summary>
         /// Control rfvVATStatus.
@@ -240,13 +240,22 @@ namespace ManageBusinessFront.Business
         protected global::System.Web.UI.WebControls.Label startOfActivitiesLabel;
 
         /// <summary>
-        /// Control startOfActivitiesCalendar.
+        /// Control startOfActivitiesTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar startOfActivitiesCalendar;
+        protected global::System.Web.UI.WebControls.TextBox startOfActivitiesTextBox;
+
+        /// <summary>
+        /// Control rfvStartDate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStartDate;
 
         /// <summary>
         /// Control yearsInIndustryLabel.
