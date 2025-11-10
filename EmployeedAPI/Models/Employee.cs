@@ -6,6 +6,9 @@ namespace EmployeedAPI.Models
         [Key] // se debe colocar para la migracion 
         public int Id {  get; set; }
         public string EmployeeCode { get; set; } = string.Empty;
+        
+        [Required]
+        public string Document {  get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public DateOnly BirthdayDate { get; set; }
@@ -19,6 +22,7 @@ namespace EmployeedAPI.Models
         public string Range { get; set; } = string.Empty;
         public DateOnly HireDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public string State { get; set; } = string.Empty;
+        public bool IsDeleted { get; set; } = false;
 
     }
 }
