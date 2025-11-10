@@ -21,6 +21,7 @@ namespace ManageBusinessFront.Employees
             public string EmployeeCode { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
+            public string Document {  get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
 
@@ -29,7 +30,6 @@ namespace ManageBusinessFront.Employees
             public string Range { get; set; }
 
             public string HireDate { get; set; }
-            public string State { get; set; }
         }
 
         protected async void Page_Load(object sender, EventArgs e)
@@ -78,13 +78,12 @@ namespace ManageBusinessFront.Employees
                 var emp = JsonConvert.DeserializeObject<Employee>(json);
                 txtFirst.Text = emp.FirstName;
                 txtLast.Text = emp.LastName;
+                txtDocument.Text = emp.Document;
                 txtEmail.Text = emp.Email;
                 txtPhone.Text = emp.Phone;
-                txtBirth.Text = emp.BirthdayDate;
+                txtBirth.Text = DateTime.Parse(emp.BirthdayDate.ToString()).ToString("dd/MM/yyyy");
                 txtDept.Text = emp.Departament;
                 txtRange.Text = emp.Range;
-                txtState.Text = emp.State;
-                
 
             }
             catch (Exception ex)
@@ -105,11 +104,11 @@ namespace ManageBusinessFront.Employees
                 Id = idEmployee,
                 FirstName = txtFirst.Text,
                 LastName = txtLast.Text,
+                Document = txtDocument.Text,
                 Email = txtEmail.Text,
                 Phone = txtPhone.Text,
                 Departament = txtDept.Text,
                 Range = txtRange.Text,
-                State = txtState.Text,
                 BirthdayDate = ParseToIsoDate(txtBirth.Text),
                 BusinessId = idBusiness
             };
@@ -140,6 +139,8 @@ namespace ManageBusinessFront.Employees
                 return dt.ToString("yyyy-MM-dd");
             return DateTime.Today.ToString("yyyy-MM-dd");
         }
+
+
 
         // 🔹 Cancelar → volver al listado
         protected void btnCancel_Click(object sender, EventArgs e)

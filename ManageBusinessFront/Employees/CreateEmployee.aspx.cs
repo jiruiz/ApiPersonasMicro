@@ -26,6 +26,7 @@ namespace ManageBusinessFront.Employees
         
                 FirstName = txtFirst.Text,
                 LastName = txtLast.Text,
+                Document = txtDocument.Text,
                 Email = txtEmail.Text,
                 Phone = txtPhone.Text,
                 BusinessId = idBusiness, // parametro del contexto

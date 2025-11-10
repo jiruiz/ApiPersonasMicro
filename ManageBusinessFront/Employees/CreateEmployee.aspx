@@ -31,9 +31,33 @@
             <asp:TextBox ID="txtLast" runat="server"
                 CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <asp:RequiredFieldValidator ID="reqLast" runat="server"
-                ControlToValidate="txtLast" ErrorMessage="⚠️ El apellido es obligatorio."
+                ControlToValidate="txtLast" ErrorMessage="El apellido es obligatorio."
                 CssClass="text-red-600 text-sm" Display="Dynamic" />
         </div>
+
+    <!-- Documento -->
+    <div class="mb-4">
+        <asp:Label runat="server" AssociatedControlID="txtDocument" Text="Nro Documento:"
+            CssClass="block font-medium text-gray-700 mb-1" />
+
+        <asp:TextBox ID="txtDocument" runat="server"
+            MaxLength="8"
+            CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <!-- Campo obligatorio -->
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+            ControlToValidate="txtDocument"
+            ErrorMessage="El documento es obligatorio."
+            CssClass="text-red-600 text-sm"
+            Display="Dynamic" />
+        <!-- Solo num y max 8 -->
+        <asp:RegularExpressionValidator ID="RegexValidator1" runat="server"
+            ControlToValidate="txtDocument"
+            ValidationExpression="^\d{1,8}$"
+            ErrorMessage="El documento solo debe contener numero y no debe superar los 8 digitos."
+            CssClass="text-red-600 text-sm"
+            Display="Dynamic" />
+    </div>
+
 
         <!-- Email -->
         <div class="mb-4">
@@ -41,7 +65,7 @@
             <asp:TextBox ID="txtEmail" runat="server"
                 CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <asp:RequiredFieldValidator ID="reqEmail" runat="server"
-                ControlToValidate="txtEmail" ErrorMessage="⚠️ El correo es obligatorio."
+                ControlToValidate="txtEmail" ErrorMessage="El correo es obligatorio."
                 CssClass="text-red-600 text-sm" Display="Dynamic" />
             <asp:RegularExpressionValidator ID="valEmail" runat="server"
                 ControlToValidate="txtEmail"
@@ -57,7 +81,7 @@
                 CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <asp:RegularExpressionValidator ID="valPhone" runat="server"
                 ControlToValidate="txtPhone" ValidationExpression="^\d{7,15}$"
-                ErrorMessage="⚠️ Ingrese solo números (7 a 15 dígitos)."
+                ErrorMessage="Ingrese solo números (7 a 15 dígitos)."
                 CssClass="text-red-600 text-sm" Display="Dynamic" />
         </div>
 
@@ -68,7 +92,15 @@
             <asp:TextBox ID="txtBirth" runat="server"
                 CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <asp:RequiredFieldValidator ID="reqBirth" runat="server"
-                ControlToValidate="txtBirth" ErrorMessage="⚠️ La fecha de nacimiento es obligatoria."
+                ControlToValidate="txtBirth"
+                ErrorMessage="La fecha de nacimiento es obligatoria."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+    
+            <!-- Validación formato dd/MM/yyyy -->
+            <asp:RegularExpressionValidator ID="valBirth" runat="server"
+                ControlToValidate="txtBirth"
+                ValidationExpression="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$"
+                ErrorMessage="Formato de fecha inválido. Tiene que ser dd/MM/yyyy (ej: 25/12/1995)."
                 CssClass="text-red-600 text-sm" Display="Dynamic" />
         </div>
 

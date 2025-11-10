@@ -51,6 +51,42 @@ namespace ManageBusinessFront.Employees
         protected global::System.Web.UI.WebControls.TextBox txtLast;
 
         /// <summary>
+        /// reqLast control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqLast;
+
+        /// <summary>
+        /// txtDocument control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDocument;
+
+        /// <summary>
+        /// reqDocument control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDocument;
+
+        /// <summary>
+        /// valDocument control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valDocument;
+
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>
@@ -58,6 +94,24 @@ namespace ManageBusinessFront.Employees
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+
+        /// <summary>
+        /// reqEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqEmail;
+
+        /// <summary>
+        /// valEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valEmail;
 
         /// <summary>
         /// txtPhone control.
@@ -69,6 +123,15 @@ namespace ManageBusinessFront.Employees
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
 
         /// <summary>
+        /// valPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valPhone;
+
+        /// <summary>
         /// txtBirth control.
         /// </summary>
         /// <remarks>
@@ -78,6 +141,24 @@ namespace ManageBusinessFront.Employees
         protected global::System.Web.UI.WebControls.TextBox txtBirth;
 
         /// <summary>
+        /// reqBirth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqBirth;
+
+        /// <summary>
+        /// valBirth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valBirth;
+
+        /// <summary>
         /// txtDept control.
         /// </summary>
         /// <remarks>
@@ -85,15 +166,6 @@ namespace ManageBusinessFront.Employees
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDept;
-
-        /// <summary>
-        /// txtState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtState;
 
         /// <summary>
         /// txtRange control.
