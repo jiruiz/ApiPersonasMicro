@@ -28,6 +28,12 @@ namespace EmployeedAPI.Controllers
             return Ok(_employeeRepository.GetEmployeeById(idEmployee));
         }
 
+        [HttpGet("all/")]
+        public IActionResult GetAllEmployees()
+        {
+            return Ok(_employeeRepository.GetAllEmployees());
+        }
+
         [HttpGet("business/{idBusiness}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Employee>))]
         [ProducesResponseType(404)]
@@ -94,6 +100,33 @@ namespace EmployeedAPI.Controllers
                 return BadRequest("Invalid employee data");
 
         }
+
+        [HttpPut("/soft_delete/{idEmployee}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult SoftDeleteEmployee(int idEmployee)
+        {
+            var success = _employeeRepository.SoftDeleteEmployee(idEmployee);
+
+            if (!success)
+                return NotFound($"Empleado con ID {idEmployee} no encontrado.");
+
+            return NoContent();
+        }
+
+        [HttpPut("/restore{idEmployee}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult RestoreEmployee(int idEmployee)
+        {
+            var success = _employeeRepository.RestoreEmployee(idEmployee);
+
+            if (!success)
+                return NotFound($"Empleado con ID {idEmployee} no encontrado.");
+
+            return NoContent();
+        }
+
 
     }
 }
