@@ -23,18 +23,20 @@ namespace ManageBusinessFront.Employees
 
             var dto = new
             {
-        
                 FirstName = txtFirst.Text,
                 LastName = txtLast.Text,
                 Document = txtDocument.Text,
                 Email = txtEmail.Text,
                 Phone = txtPhone.Text,
-                BusinessId = idBusiness, // parametro del contexto
+                BusinessId = idBusiness, // parámetro del contexto
                 BirthdayDate = ParseToIsoDate(txtBirth.Text),
                 Departament = txtDept.Text,
-                Range = txtRange.Text
-                
+                Range = txtRange.Text,
+                HireDate = string.IsNullOrWhiteSpace(txtHireDate.Text) // si viene vacio el backend completa con la fecha actual
+                    ? null
+                    : ParseToIsoDate(txtHireDate.Text)
             };
+
 
             var json = JsonConvert.SerializeObject(dto);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -42,15 +44,19 @@ namespace ManageBusinessFront.Employees
             using (var client = new HttpClient())
             {
                 var resp = await client.PostAsync("https://localhost:7199/api/Employee", content);
+
                 if (resp.IsSuccessStatusCode)
                 {
-                    // Volver al listado
                     Response.Redirect($"~/Employees/EmployeesList.aspx?idBusiness={idBusiness}", false);
                     return;
                 }
 
-                lblMsg.Text = $"Error al guardar: {(int)resp.StatusCode} {resp.ReasonPhrase}";
+                // 🔍 Leer mensaje de error del servidor
+                string errorContent = await resp.Content.ReadAsStringAsync();
+                lblMsg.Text = $"Error al guardar: {(int)resp.StatusCode} {resp.ReasonPhrase}<br />Detalles: {errorContent}";
+                lblMsg.CssClass = "text-red-600 font-semibold";
             }
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

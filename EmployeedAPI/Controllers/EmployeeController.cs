@@ -66,22 +66,21 @@ namespace EmployeedAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee([FromBody] EmployeeCreateDto employee)
+        public IActionResult AddEmployee([FromBody] EmployeeCreateDto employeeDto)
         {
-
-            if (employee == null)
+            try
             {
-                return BadRequest("Invalid eployee data");
-
+                _employeeRepository.AddEmployee(employeeDto);
+                return Ok(new { message = "Empleado creado correctamente." });
             }
-            var created = _employeeRepository.AddEmployee(employee);
-
-            if (!created)
+            catch (InvalidOperationException ex)
             {
-                return StatusCode(500, "Error saving employee");
+                return BadRequest(new { error = ex.Message });
             }
-
-            return Ok(employee); // retorna el empleado creado
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Error interno." });
+            }
         }
 
         [HttpPut("{id}")]

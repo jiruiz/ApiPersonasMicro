@@ -22,7 +22,7 @@
     <!-- tabla -->
     <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200 max-w-6xl mx-auto bg-white">
     <asp:CheckBox ID="chkShowDeleted" runat="server"
-        Text="Mostrar empleados eliminados"
+        Text="Mostrar empleados inactivos"
         AutoPostBack="true"
         OnCheckedChanged="chkShowDeleted_CheckedChanged"
         CssClass="mb-4 font-medium text-gray-700" />
@@ -52,6 +52,7 @@
                             <asp:Button ID="btnEdit" runat="server" Text="✏️ Editar"
                                 CssClass="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
                                 CommandName="EditRow"
+                                Enabled='<%# !(bool)Eval("IsDeleted") %>'
                                 CommandArgument='<%# Eval("Id") %>' />
 
                             <asp:Button ID="btnDelete" runat="server" Text="🗑️ Eliminar"
@@ -62,7 +63,7 @@
                                 OnClientClick="return confirm('¿Seguro que deseas eliminar este empleado?');" />
 
                            <asp:LinkButton ID="btnReactivate" runat="server"
-                                CssClass="bg-red-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
+                                CssClass="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-xs font-semibold transition"
                                 CommandName="ReactivateRow"
                                 CommandArgument='<%# Eval("Id") %>'
                                 Visible='<%# (bool)Eval("IsDeleted") %>'

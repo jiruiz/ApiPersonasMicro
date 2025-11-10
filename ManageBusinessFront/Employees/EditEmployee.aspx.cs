@@ -24,12 +24,10 @@ namespace ManageBusinessFront.Employees
             public string Document {  get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
-
             public string BirthdayDate { get; set; }
             public string Departament { get; set; }
             public string Range { get; set; }
 
-            public string HireDate { get; set; }
         }
 
         protected async void Page_Load(object sender, EventArgs e)

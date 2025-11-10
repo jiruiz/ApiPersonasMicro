@@ -177,6 +177,24 @@ namespace ManageBusinessFront.Employees
         protected global::System.Web.UI.WebControls.TextBox txtRange;
 
         /// <summary>
+        /// txtHireDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHireDate;
+
+        /// <summary>
+        /// valHireDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valHireDate;
+
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
