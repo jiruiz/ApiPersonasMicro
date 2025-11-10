@@ -33,7 +33,9 @@ namespace EmployeedAPI.Repository
                     Departament = e.Departament,
                     HireDate = e.HireDate,
                     Range = e.Range,
-                    State = e.State
+                    State = e.State,
+                    IsDeleted = e.IsDeleted,
+
                 })
                 .ToList();
         }
@@ -55,35 +57,53 @@ namespace EmployeedAPI.Repository
                     Departament = e.Departament,
                     HireDate = e.HireDate,
                     Range = e.Range,
-                    State = e.State
+                    State = e.State,
+                    IsDeleted = e.IsDeleted
                 })
                 .ToList();
         }
 
 
         public bool AddEmployee(EmployeeCreateDto employeeDto) {
-
-            var employee = new Employee
+            try
             {
-                FirstName = employeeDto.FirstName,
-                LastName = employeeDto.LastName,
-                Email = employeeDto.Email,
-                Phone = employeeDto.Phone,
-                Document = employeeDto.Document,
-                BirthdayDate = employeeDto.BirthdayDate,
-                BusinessId = employeeDto.BusinessId,
-                Departament = employeeDto.Departament,
-                //si no viene el dato, se usa la actual
-                HireDate = employeeDto.HireDate == default ? DateOnly.FromDateTime(DateTime.Now) : employeeDto.HireDate,
-                Range = employeeDto.Range,
-                State = employeeDto.State
-            };
 
-            _context.Employees.Add(employee);
-            _context.SaveChanges(); // se genera el Id
-            employee.EmployeeCode = $"{employee.BusinessId}{employee.Id}";
-            
-            return Save();
+
+                var employee = new Employee
+                {
+                    FirstName = employeeDto.FirstName,
+                    LastName = employeeDto.LastName,
+                    Email = employeeDto.Email,
+                    Phone = employeeDto.Phone,
+                    Document = employeeDto.Document,
+                    BirthdayDate = employeeDto.BirthdayDate,
+                    BusinessId = employeeDto.BusinessId,
+                    Departament = employeeDto.Departament,
+                    //si no viene el dato, se usa la actual
+                    HireDate = employeeDto.HireDate.HasValue
+                    ? employeeDto.HireDate.Value
+    :               DateOnly.FromDateTime(DateTime.Now),
+
+                    Range = employeeDto.Range,
+                    State = employeeDto.State
+                };
+
+                _context.Employees.Add(employee);
+                _context.SaveChanges(); // se genera el Id
+                employee.EmployeeCode = $"{employee.BusinessId}{employee.Id}";
+
+                return Save();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Verificacion si se ingresa un documento ya existente
+                if (ex.InnerException?.Message.Contains("UNIQUE constraint failed") == true)
+                {
+                    throw new InvalidOperationException("El documento ya existe en la base de datos.");
+                }
+
+                throw; // otros errores
+            }
         }
 
         public bool Save()
@@ -94,7 +114,12 @@ namespace EmployeedAPI.Repository
 
         public ICollection<Employee> GetEmployeesIdBusiness(int idBusiness)
         {
-            return _context.Employees.Where(e=>e.BusinessId == idBusiness).ToList();
+            return _context.Employees.Where(e=>e.BusinessId == idBusiness && !e.IsDeleted).ToList();
+        }
+
+        public ICollection<Employee> GetAllEmployeesIdBusiness(int idBusiness)
+        {
+            return _context.Employees.Where(e => e.BusinessId == idBusiness).ToList();
         }
 
         public Employee GetEmployeeById(int id) { 
@@ -116,8 +141,6 @@ namespace EmployeedAPI.Repository
             existingEmployee.Phone = employeeDto.Phone;
             existingEmployee.Departament = employeeDto.Departament;
             existingEmployee.Range = employeeDto.Range;
-            existingEmployee.State = employeeDto.State;
-            existingEmployee.HireDate = employeeDto.HireDate;
             existingEmployee.BirthdayDate = employeeDto.BirthdayDate;
 
             return Save();

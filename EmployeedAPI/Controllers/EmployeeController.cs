@@ -49,23 +49,38 @@ namespace EmployeedAPI.Controllers
             return Ok(employees);
         }
 
-        [HttpPost]
-        public IActionResult CreateEmployee([FromBody] EmployeeCreateDto employee)
+        // metodo que retorna todos los empleados, hasta los eliminados
+        [HttpGet("all/business/{idBusiness}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Employee>))]
+        [ProducesResponseType(404)]
+        public IActionResult GetAllEmployeesByIdBusiness(int idBusiness)
         {
+            var employees = _employeeRepository.GetAllEmployeesIdBusiness(idBusiness);
 
-            if (employee == null)
+            if (!employees.Any())
             {
-                return BadRequest("Invalid eployee data");
-
-            }
-            var created = _employeeRepository.AddEmployee(employee);
-
-            if (!created)
-            {
-                return StatusCode(500, "Error saving employee");
+                return NotFound($"No employees found for BusinessId {idBusiness}");
             }
 
-            return Ok(employee); // retorna el empleado creado
+            return Ok(employees);
+        }
+
+        [HttpPost]
+        public IActionResult AddEmployee([FromBody] EmployeeCreateDto employeeDto)
+        {
+            try
+            {
+                _employeeRepository.AddEmployee(employeeDto);
+                return Ok(new { message = "Empleado creado correctamente." });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Error interno." });
+            }
         }
 
         [HttpPut("{id}")]
@@ -101,7 +116,7 @@ namespace EmployeedAPI.Controllers
 
         }
 
-        [HttpPut("/soft_delete/{idEmployee}")]
+        [HttpPut("softDelete/{idEmployee}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public IActionResult SoftDeleteEmployee(int idEmployee)
@@ -114,7 +129,7 @@ namespace EmployeedAPI.Controllers
             return NoContent();
         }
 
-        [HttpPut("/restore{idEmployee}")]
+        [HttpPut("restore/{idEmployee}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public IActionResult RestoreEmployee(int idEmployee)

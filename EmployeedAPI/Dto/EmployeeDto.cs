@@ -16,5 +16,7 @@
         public string Range { get; set; } = string.Empty;
         public DateOnly HireDate { get; set; }
         public string State { get; set; } = string.Empty;
+
+        public bool IsDeleted { get; set; }
     }
 }

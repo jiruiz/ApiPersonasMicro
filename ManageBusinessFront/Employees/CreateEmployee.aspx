@@ -118,6 +118,24 @@
                 CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
 
+                <!-- Fecha de contratación -->
+        <div class="mb-4">
+            <asp:Label runat="server" AssociatedControlID="txtHireDate" Text="Fecha de contratación (dd/MM/yyyy):"
+                CssClass="block font-medium text-gray-700 mb-1" />
+    
+            <asp:TextBox ID="txtHireDate" runat="server"
+                placeholder="Opcional - se completará automáticamente si se deja vacío"
+                CssClass="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    
+            <!-- Validación formato dd/MM/yyyy o vacío -->
+            <asp:RegularExpressionValidator ID="valHireDate" runat="server"
+                ControlToValidate="txtHireDate"
+                ValidationExpression="^$|^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$"
+                ErrorMessage="Formato de fecha inválido. Debe ser dd/MM/yyyy (ej: 25/12/1995). O vacio para usar la fecha actual."
+                CssClass="text-red-600 text-sm" Display="Dynamic" />
+        </div>
+
+
         <!-- Botones -->
         <div class="flex justify-center gap-4">
             <asp:Button ID="btnSave" runat="server" Text="💾 Guardar"
