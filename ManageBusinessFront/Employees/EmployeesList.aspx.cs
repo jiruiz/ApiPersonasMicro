@@ -151,6 +151,7 @@ namespace ManageBusinessFront.Employees
             if (int.TryParse(objectId, out var id))
             {
                 await DeleteEmployeeAsync(id);
+                await LoadEmployeesAsync(idBusiness, chkShowDeleted.Checked);
             }
         }
         protected async void chkShowDeleted_CheckedChanged(object sender, EventArgs e)

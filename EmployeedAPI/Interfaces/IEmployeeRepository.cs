@@ -20,6 +20,8 @@ namespace EmployeedAPI.Interfaces
 
         bool DeleteEmployee(int idEmployee);
 
+        bool DeleteEmployeesByIdBusiness(int idBusiness);
+
         bool SoftDeleteEmployee (int idEmployee);
 
         bool RestoreEmployee(int idEmployee);

@@ -43,7 +43,7 @@ namespace EmployeedAPI.Controllers
 
             if (!employees.Any())
             {
-                return NotFound($"No employees found for BusinessId {idBusiness}");
+                return NotFound($"No hay empleados con asignados al id: {idBusiness}");
             }
 
             return Ok(employees);
@@ -59,7 +59,7 @@ namespace EmployeedAPI.Controllers
 
             if (!employees.Any())
             {
-                return NotFound($"No employees found for BusinessId {idBusiness}");
+                return NotFound($"No hay empleados con asignados al id: {idBusiness}");
             }
 
             return Ok(employees);
@@ -89,7 +89,7 @@ namespace EmployeedAPI.Controllers
         public IActionResult UpdateEmployee(int id, [FromBody] EmployeeCreateDto employeeDto)
         {
             if (employeeDto == null) {
-                return BadRequest("Invalid employee data");
+                return BadRequest("Datos con errores");
             }
             var success = _employeeRepository.EditEmployee(employeeDto, id);
             if (!success)
@@ -112,7 +112,7 @@ namespace EmployeedAPI.Controllers
                 return NoContent(); //respuesta ok
             }
             else
-                return BadRequest("Invalid employee data");
+                return BadRequest("Datos con errores");
 
         }
 
@@ -140,6 +140,17 @@ namespace EmployeedAPI.Controllers
                 return NotFound($"Empleado con ID {idEmployee} no encontrado.");
 
             return NoContent();
+        }
+
+        [HttpDelete("byBusiness/{idBusiness}")]
+        public async Task<IActionResult> DeleteByBusiness(int idBusiness)
+        {
+            bool success = _employeeRepository.DeleteEmployeesByIdBusiness(idBusiness);
+
+            if (!success)
+                return NotFound($"No se encontraron empleados asignados al negocio {idBusiness}.");
+
+            return Ok("Empleados eliminados");
         }
 
 

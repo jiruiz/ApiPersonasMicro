@@ -3,6 +3,7 @@ using EmployeedAPI.Dto;
 using EmployeedAPI.Interfaces;
 using EmployeedAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace EmployeedAPI.Repository
 {
@@ -157,7 +158,19 @@ namespace EmployeedAPI.Repository
             return Save();
         
         }
+        
+        public bool DeleteEmployeesByIdBusiness(int idBusiness)
+        {
 
+            var employees = _context.Employees
+            .Where(e => e.BusinessId == idBusiness)
+            .ToList();
+            if (!employees.Any())
+                return false;
+
+            _context.Employees.RemoveRange(employees);
+            return Save();
+        }
         public bool SoftDeleteEmployee(int id)
         {
             var employee = _context.Employees.FirstOrDefault(e => e.Id == id);
